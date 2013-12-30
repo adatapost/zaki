@@ -1,0 +1,92 @@
+Regular Expression 
+=================================================================
+RegEx or regular expressions is a way to create "patterns" to compare,serach/find and replace strings. It is "pattern" based "search/replace" technique.
+
+You can use following char class to form a pattern
+
+Char	Meaning
+===================
+ .	It matches any character
+ \d	It matches single digit
+ \w	It matches single word char
+ \s   	It matches whitespace
+ \D	It matches non-digit
+ \W	It matches non-word
+ \S	It matches non-whitespace
+[ ]	It matches chars inside the set
+ ()	It matches group chars
+
+
+You can use following quantifiers:
+
+?	Single or none
+*	Zero or more
++  	One or more
+{n}	n times
+{n,m}	n to m times
+{n,}	n or more
+
+Always use boundry markers to create expression:
+
+^ - Begin of pattern
+$ - End of pattern
+
+
+Use System.Text.RegularExpression.Regex class's instance or static methods to test the input string against the pattern.
+
+Example: Using instance methods
+
+        Regex pattern = new Regex(@"^\d\d\d$");
+        string str = "9329";
+        Console.WriteLine(pattern.IsMatch(str)); //false
+
+Example: Using static methods
+
+        string str = "932923";
+        Console.WriteLine(Regex.IsMatch(str, @"^\d{6}$"));
+
+Example: Validity of person's name. (allows alphabets and space)
+
+        string str = "Raj";
+        string pattern = @"^[a-zA-Z ]{3,40}$";
+        Console.WriteLine(Regex.IsMatch(str, pattern));
+
+Example: Group validation
+
+        string pattern = @"(red|blue|black)";
+        string input = "I like blue color";
+        Console.WriteLine(Regex.IsMatch(input, pattern));
+
+Regex.Replace(input,pattern,replaceStr) - Replace string
+
+        string input = "Th1e re22222d s2222u33n and 43red r44ose";
+        string pattern = @"(\d+|\s+)";
+        Console.WriteLine(Regex.Replace(input, pattern, ""));
+         
+         
+Example: Regex.Split() -- Split a string on given pattern.
+
+        string input = "This   is    the     word        splitter";
+        string pattern = @"\s+";
+        string []ar= Regex.Split(input, pattern);
+        foreach (var t in ar)
+            Console.WriteLine(t);
+
+        Console.WriteLine("Total words : " + ar.Length);
+        
+Example: Regex.Match(input,pattern) - Returns "Match" object that contains chain of matches.
+
+        string input = "This 190 and 39 are number";
+        string pattern = @"\d+";
+        Match match = Regex.Match(input, pattern);
+        if (match.Success)
+        {
+            Console.WriteLine(match.Value);
+            Console.WriteLine(match.NextMatch());
+            Console.WriteLine(match.Value);
+        }
+        else
+        {
+            Console.WriteLine("No result");
+        }
+         

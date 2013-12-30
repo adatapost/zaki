@@ -1,0 +1,6 @@
+c:\csnet\zaki\InheritanceExample\InheritanceExample\bin\Debug\InheritanceExample.exe.config
+c:\csnet\zaki\InheritanceExample\InheritanceExample\bin\Debug\InheritanceExample.exe
+c:\csnet\zaki\InheritanceExample\InheritanceExample\bin\Debug\InheritanceExample.pdb
+c:\csnet\zaki\InheritanceExample\InheritanceExample\obj\Debug\InheritanceExample.csprojResolveAssemblyReference.cache
+c:\csnet\zaki\InheritanceExample\InheritanceExample\obj\Debug\InheritanceExample.exe
+c:\csnet\zaki\InheritanceExample\InheritanceExample\obj\Debug\InheritanceExample.pdb

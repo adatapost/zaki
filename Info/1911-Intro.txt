@@ -1,0 +1,62 @@
+What do you meant by the term "Object"?
+
+ 
+  It is the partitioned area of memory.
+
+  Or
+
+  Chunks of allocated bytes.
+
+
+  Or
+
+  Groups of bytes which are allocated by either OS or
+  programming platform.
+
+ 
+ Consider the following example:
+
+   int no = 40;
+    ^  ^
+    |  |----- variable that is an alias of an object
+
+   class 
+ or datatype
+ 
+  The OS/Platform allocate "four" bytes because of "int" type and these four bytes group is called an object whose address or reference is assigned to "no" variable.   
+
+
+Class or Datatype
+==================
+
+ Class or Type or Datatype is a logical entity which includes data definition and function definitions (actions).
+
+ A class is also called the template (structure) of an object.
+
+
+
+What do you meant by "Object Oriented Paradigm"?
+------------------------------------------------
+
+ Its a program design technique. The OOP offers number of guidelines through which a developer can design/write his/her programs.
+
+Following are major concepts introduced with OOP:
+
+  1. Resuability of code
+  2. Control the accessibility of code (Hide or show the code).
+  3. Protect the "objects" by creating actions (or methods)      (Encapsulation)
+  4. Real world polymorphism 
+  5. Template Programming an so on.
+
+
+Why we use "class" keyword in Java/C#/C++ languages?
+
+We can create new datatype using "class" keyword.
+
+Note: There are other keywords in diff languages through which you can design new datatypes.
+
+In .net framework, we've approx 3000 TYPES (datatypes) designed using "class", "interface", "struct", "enum" and "delegate" keywords.
+
+
+
+

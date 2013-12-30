@@ -1,0 +1,6 @@
+c:\csnet\zaki\StudentExam\StudentExam\bin\Debug\StudentExam.exe.config
+c:\csnet\zaki\StudentExam\StudentExam\bin\Debug\StudentExam.exe
+c:\csnet\zaki\StudentExam\StudentExam\bin\Debug\StudentExam.pdb
+c:\csnet\zaki\StudentExam\StudentExam\obj\Debug\StudentExam.csprojResolveAssemblyReference.cache
+c:\csnet\zaki\StudentExam\StudentExam\obj\Debug\StudentExam.exe
+c:\csnet\zaki\StudentExam\StudentExam\obj\Debug\StudentExam.pdb

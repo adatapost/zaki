@@ -1,0 +1,5 @@
+c:\csnet\zaki\ExtensionMethods\ExtensionMethods\bin\Debug\ExtensionMethods.exe.config
+c:\csnet\zaki\ExtensionMethods\ExtensionMethods\bin\Debug\ExtensionMethods.exe
+c:\csnet\zaki\ExtensionMethods\ExtensionMethods\bin\Debug\ExtensionMethods.pdb
+c:\csnet\zaki\ExtensionMethods\ExtensionMethods\obj\Debug\ExtensionMethods.exe
+c:\csnet\zaki\ExtensionMethods\ExtensionMethods\obj\Debug\ExtensionMethods.pdb

@@ -1,0 +1,89 @@
+ASP.NET Globalization & Localization
+----------------------------------------------------------------------
+
+To create such data file tht can be used by all pages/programs within the site is known as "Global" data and a data file that works on a specific page/program is known "local" data file.
+
+To develop multi-lingual web-page, the resource file play important role. The resource files save data into XML form where as .aspx, .master or .ascx use them to present on web.
+
+Resource File Name
+==================
+There can be number of Resource files and they have .resx extention. Each resource file will be a "Class" implicitly.
+
+  For example,
+
+    Site.resx will be Site resource class name. 
+
+  You can use Resource file to store text/message, images and file   content.
+
+Example:
+
+1. Add .resx (e.g Site.resx) under the App_GlobalResources
+2. Open "Site.resx" and some "text" entries:
+
+     title : Business Management
+     company : ABC Ltd
+
+3. In .aspx, .master or .ascx, bind the "Resource keys" to control    properties:
+
+    1. Select control's properties + Expression and bind it to:
+              Resource Class: Site
+                       Key  : title
+
+  OR you can bind it manually using
+
+       <%$ Resources:ClassName, keyName %>
+
+
+<h1>
+  <asp:label id="lable1" runat="server"
+             text='<%$ Resources:Site, title%>'/></h1>
+              
+
+Multi-lingual Resource files
+-------------------------------------------------------------
+ The first resource file is simply a unique filename and also a class name that we've learnt. Now, we are going to create language-country specific resource file using following naming pattern:
+
+  default_file.resx <--- main or fallback resource file
+
+  default_flle.en-GB.resx -- english_GreatBriton
+  default_file.gu-IN.resx -- gujarati_INDIA 
+
+Based upon the client's header, the ASP.NET automatically change the resource and embed data accordingly to the clien't country and language.
+
+ Syntax:  file.language-COUNTRY.resx
+
+Example:
+
+
+1. Site.resx with
+   title = "Hello!"
+2. Site.gu-IN.resx with
+   title = "Kem chho"
+3. Site.en-GB with
+   title = "Greetings"
+
+And to test webform, set 
+   <%@Page Culture="en-GB" UICulture="en-GB" ...%>
+
+To set culture programatically.
+-------------------------------
+Override the InitializeCulture() method in webform:
+
+ string cult = "en-US"; //defaulot
+ protected override void InitializeCulture()
+    {
+        if (Session["cult"] != null)
+            cult = Session["cult"].ToString();
+
+        base.InitializeCulture();
+        Culture = cult;
+        UICulture = cult;
+    }
+ 
+ Click of buttonGuj:
+      Session["cult"] = "gu-IN";
+      Response.Redirect(Request.Url.ToString());
+ 
+
+
+             

@@ -1,0 +1,94 @@
+ASP.NET Web Form Application
+====================================================================
+
+The ASP.NET is an architecture through which we can develop and deploy web applications. There are number of ways to do so:
+
+   1. Using WebForm -- Single Controller and single view approach
+   2. Using MVC -- Single controller and multiple views.
+   3. Single Page Web App 
+   4. Web Service App
+
+WebForm is controlls based web-development API where each webForm (.aspx) is consider as "controller" and "view".
+
+MVC - Model View Controller doesnot use "controlls" instead it uses standard HTML tags and helpers classes to seperate the logic into three classes - Controller, View and Model classes.
+
+Single Page Web framework is introduce in 4.0 to write PHP like applications. (No controls are there).
+
+Web Service framework allow us to develop such application that can be controlled or executed remotely.
+
+Software needed to host ASP.NET app?
+--------------------------------------
+
+First of all we need a web-server (IIS - Internet Information Service).
+
+The main job of "web/Http-server" is receive client (web-browser)request for a resource (program file or static file).
+The web-server returns copy of static resource to the web-browser but in case of 'dynamic resource', it hand over this resource to the "application server" (ASP.NET / .net framework).
+
+Secondly we need appropriate version of Application Server.
+
+In addition, we need Database server (Oracle, MySql, MSSQl etc), Mail Servers, Identity Servers (search & lookup) and so on.
+
+
+Static resources : Content of static resource never change automataically except its author changes. .html, .js., .css, images, videos, audios are example of static resources.
+
+
+Dynamic resources : are programs written in C#, VB.NET, Java, PHP and they produce dynamic content of HTML/JavaScript/CSS when they are requested.
+
+WebSite and WebApplication Projects
+==================================================================
+
+
+There are two project templates to develop ASP.NET WebForm application:
+
+ 1. Web Application
+ 2. WebSite
+
+Web Application template allow us to gether static and dynamic resources as a bundle. ie. the entire application will be compile as a whole. A single .dll will be created for each web application. Changes in any one resource cannot update automatically to that .dll so we need to re-build application whenever we make changes.
+
+In website template, we have pre-defined directories and each dynamic resource will be compiled seperately this lead better code management and easy update on dynamic resource. And you can also build website as a whole using "publish" wizard.
+
+
+In web Application template there is no formal directory structure so user is free to create his/her own conventions and it becomes clumsy with team development.
+
+WebSite Directory Structure
+============================
+To organize our resources, we must have to place them accoding their application/usage. There are some standard folders in ASP.NET and they have special purpose:
+
+Folder		Description
+-----------------------------
+Bin		In order to use .dll in website, copy them into Bin
+		folder.
+
+App_Code	Any .cs or .vb class must be placed inside this folder 		otherwise your code will not compiled.
+
+App_Data	Store data/database files (It is optional)
+
+App_GlobalResources  - To store "global" resources used by the all
+		programs in current webapp.
+App_LocalResources - To store local resources used by a particular 		program.
+Theme		To store stylesheet and skin files.
+
+App_WebReferences - To add web-service discovery files.
+
+App_WebBrowsers - To add browser capabilities.
+
+
+
+We can create custom folders for "images", "styles" and "scripts" etc.
+
+You can create special folders for different puropses that contains resources which are belonging to a specific kind/type of user.
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+

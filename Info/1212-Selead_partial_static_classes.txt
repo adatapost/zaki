@@ -1,0 +1,44 @@
+sealed keyword -- Prevent a class to be inherited.
+---------------------------------------------------
+Use "sealed" keyword with class definition when you don't want your class become a superclass.
+
+public sealed class Person{}
+public class Employee : Person { } //Invalid
+
+
+static keyword -- with class
+---------------------------------------------------
+static class ensure that all members in that particular class must be static.
+
+public static class ClassName
+{
+   //static memebers
+ }
+Example:
+public static class MyApp
+{
+    public static int Age { get; set; } //valid
+    public void Print() { } // Invalid
+}
+
+
+
+partial keyword or partial class
+----------------------------------------
+
+You can split your class definition into one or more .cs files. The C# compiler will collects all partial class and compile as a whole.
+
+a1.cs
+----------
+public class Emp {
+  public int Age {get;set;}
+}
+
+a2.cs
+-----------------------
+partial class Emp {
+   public string Name {get;set;}
+}
+
+
+ 

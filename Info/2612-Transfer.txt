@@ -1,0 +1,71 @@
+Transfer user from one page to another page.
+-----------------------------------------------------------------
+There are number of ways to do so. Some of them are declarative using <a href/> or <asp:HyperLink/> and some of them are progrmatically.
+
+Note: In addition, use JavaScript to request resources programatically.
+
+1. <asp:HyperLink/> or <a href/>
+
+   Request a page without data (query string):
+
+    <asp:HyperLink NavigateUrl="~/Page2.aspx" Text="Click Here"/>
+
+   You can append ?key1=value1&key2=value2..... string after the    resource name. That way you can send data from one page to requested    page.
+
+
+   e.g NavigateUrl="~/Page2.aspx?no=10&name=Abc"
+
+   To receive query-string data into Page2:
+
+        Add following code in Page_Load;
+
+            if (Request["no"] != null)
+                Label1.Text = Request["no"];
+            if (Request["name"] != null)
+                Label2.Text = Request["name"];
+
+      [Note: You can also use Request.QueryString property to read 
+             querystring data]
+
+2. Cross Page Postback - Submit data to requested page using POST request or <form method="post"> data
+
+   Page1.aspx
+   
+   No: TextBox1
+   Name: TextBox2
+
+   Button1 (Button1.PostBackUrl="~/Page2.aspx")
+
+
+   Page2.aspx
+
+   Label1 Label2
+
+   Code in Page_Load:
+
+          if(Request["TextBox1"]!=null)
+               Label1.Text = Request["TextBox1"];
+         if(Request["TextBox2"]!=null)
+               Label2.Text = Request["TextBox2"];
+
+
+
+
+3. Response.Redirect(url) - Programatically  request a resource.
+
+    Response.Redirect("~/Page2.aspx"); Without data
+
+    string q="~/Page2.aspx?no=" + TextBox1.Text;
+
+    Response.Redirect(q);
+
+
+4. Server.Transfer(url) -- It request a resource that is available in an application within the scope of currently requested page. You cannot request external resources like :
+
+     Response.Redirect("http://www.google.com") is valid but
+     Server.Transfer("http://www.google.com") is not valid.
+
+
+
+
+

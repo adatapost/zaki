@@ -1,0 +1,26 @@
+Local Resource -- App_LocalResources
+--------------------------------------------------------------
+To create page specific resource file for single or multiple cultures, we need to create .resx files as following:
+
+  For Help.aspx, resource files will be:
+
+
+      Help.aspx.resx <--- Default resource file and we need to set                           ASP.NET Control properties through keys.
+
+          Title.Text : Hello
+          Title.BackColor: Red
+          Title.ForeColor: White
+
+     Help.aspx.gu-IN.resx
+          Title.Text : Kem chho
+          Title.ForeColor:Green 
+
+
+and to apply "Title" properties into controls in Help.aspx:
+
+  <asp:Label meta:resourcekey="Title" ..../>
+  <asp:TextBox meta:resourcekey="Title" .../>
+
+ 
+           
+     

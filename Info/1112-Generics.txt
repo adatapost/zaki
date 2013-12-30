@@ -1,0 +1,95 @@
+Generics/Templated Datatypes
+----------------------------------------------------------------------
+
+Generics is a compiler driven feature to re-use the code. Reusability mention here is somewhat different than "Composition" and "Inheritance".
+
+
+With "Generics", we can pass DataTypes like method parameters to the  other types.
+
+
+Suppose I want to create a "Stack" if "int"
+
+   class Stack
+    {
+       int []items;
+       ......
+       void push(int n){}
+       int pop() {}
+     }
+Now, I need another stack to store string, then I've to create brand-new class:
+class StackString
+    {
+       string []items;
+       ......
+       void push(string n){}
+       string pop() {}
+     }
+In that case we've to create different "Stack" classes for different datatypes.
+
+With Generics, our Stack class would be:
+
+class Stack<T>
+ {
+     T []items;
+     void push(T n){}
+      T pop(){}
+  }
+
+  Here in above example, Type parameter "T" can be any user-defined name and not necessarly it is upper but for the sake of good convention, we will use upper letter.
+
+  There may be one or more type parameters.
+  for example,
+       class Pair<K,V> {} 
+
+Example:
+
+class Data<T>
+{
+   public T Value {get;set;}
+}
+class MainApp
+{
+   static void Main()
+    {
+       Data<int> a=new Data<int>();
+       Data<string> b=new Data<string>();
+
+       a.Value = 10;
+       b.Value = "Hello";
+       Console.WriteLine(a.Value + " " + b.Value);
+     }
+}
+
+Generics is best suited to develop general purpose algorithms especailly - linked list, graph, tree, stack, queue and so on.
+
+Example:
+
+public class Stack<T>
+{
+    public T[] Items { get; set; }
+    private int index = -1;
+
+    public void Push(T item)
+    {
+        Items[++index] = item;
+    }
+    public T Pop()
+    {
+        return Items[index--];
+    }
+}
+
+class MainApp
+{
+    static void Main()
+    {
+        Stack<int> a = new Stack<int>();
+        a.Items = new int[4];
+
+        a.Push(10);
+        a.Push(20);
+
+        Console.WriteLine(a.Pop());
+        Console.WriteLine(a.Pop());
+    }
+}

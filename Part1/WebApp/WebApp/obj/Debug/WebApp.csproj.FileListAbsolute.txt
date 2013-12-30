@@ -1,0 +1,4 @@
+c:\csnet\zaki\WebApp\WebApp\bin\WebApp.dll
+c:\csnet\zaki\WebApp\WebApp\bin\WebApp.pdb
+c:\csnet\zaki\WebApp\WebApp\obj\Debug\WebApp.dll
+c:\csnet\zaki\WebApp\WebApp\obj\Debug\WebApp.pdb

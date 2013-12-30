@@ -1,0 +1,12 @@
+﻿body {
+    background:#3ae;
+}
+.left{
+    float:left;
+    height:300px;
+}
+
+.right{
+    float:left;
+    height:300px;
+}

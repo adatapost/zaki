@@ -1,0 +1,208 @@
+Active DataSet Object Library
+======================================================================
+
+
+Classes from System.Data and System.Xml forms ADO.NET class library. The ADO.NET is also called Database integration class library and this lib contains two types of classes:
+
+  1. DataSet classes (DataColumn, DataRow, DataView, DataTable and      DataSet etc).
+
+     These classes represent "tabular" data in form of objects. In      otherword, in-memory representation of data is called "DataSet".
+
+ 2. Provider APIs Or Data Provider classes
+    These APIs are used to connect with database server, execute     queries & stored-procedures and returns result.
+
+    There are different "providers" for different "databases":
+
+   e.g
+
+        MSSQL Server ver 2000 or higher : Sql Provier                  (System.Data.SqlClient)
+
+        Oracle server 8 or heigher : ODP.NET provide, download from                                      oracle's site.
+                                     (Oracle Data Provider)
+
+       MySql Server 4 or heigher : MySql .net connector API, download                                      from mysql.com.
+
+       MS-Access, Excel, CSV etc : OleDb provider. It is an extension of ODBC - Open Database Connectivity. OleDb - Object Linking and Embedding Database is a new protocol to (connect/execute/result) expose database functionalities in window operating system.
+
+
+
+       The OleDb is the general purpose connector API to expose oracle, mysql, mssql, ms-access, db2, and many more databases. OleDb has additional layers so datbase connect & process speed will be down in certain cases.
+
+       Whereas Database specific API (SqlClient,ODP,netConnector etc) do not have additional layer between .net application and database server.
+
+
+
+ 
+Example: DataTable, DataRow and DataColumn classes
+
+1. Drop GridView1 and 
+2. Write following code in Page_Load:
+
+
+ if (!IsPostBack)
+        {
+           //Create table object
+            DataTable dt = new DataTable();
+
+           //Add columns
+            dt.Columns.Add("SrNo", typeof(int));
+            dt.Columns["SrNo"].AutoIncrement = true;
+            dt.Columns["SrNo"].AutoIncrementSeed = 100;
+            dt.Columns["SrNo"].AutoIncrementStep = 3;
+            dt.Columns.Add("Name");
+            dt.Columns.Add("English",typeof(int));
+            dt.Columns.Add("Maths", typeof(int));
+            dt.Columns.Add("Science", typeof(int));
+
+           //Add Expression columns
+            dt.Columns.Add("Total", typeof(int), "English+Maths+Science");
+            dt.Columns.Add("Percent", typeof(int), "Total/3");
+
+            //NewRow to create an empty row
+            DataRow r = dt.NewRow();
+            r["Name"] = "Z";
+            r["English"] = 98;
+            r["Maths"] = 56;
+            r["Science"] = 67;
+
+            dt.Rows.Add(r);
+
+            r = dt.NewRow();
+            r["Name"] = "A";
+            r["English"] = 68;
+            r["Maths"] = 96;
+            r["Science"] = 87;
+
+            dt.Rows.Add(r);
+
+           //Binding
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
+
+        }
+
+Example: DataView object to Sort and Filter data.
+
+1. Add GridView1 and code in Page_Load
+2.
+
+  if (!IsPostBack)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("SrNo", typeof(int));
+            dt.Columns["SrNo"].AutoIncrement = true;
+            dt.Columns["SrNo"].AutoIncrementSeed = 100;
+            dt.Columns["SrNo"].AutoIncrementStep = 3;
+            dt.Columns.Add("Name");
+            dt.Columns.Add("English",typeof(int));
+            dt.Columns.Add("Maths", typeof(int));
+            dt.Columns.Add("Science", typeof(int));
+            dt.Columns.Add("Total", typeof(int), "English+Maths+Science");
+            dt.Columns.Add("Percent", typeof(int), "Total/3");
+
+            DataRow r = dt.NewRow();
+            r["Name"] = "Z";
+            r["English"] = 98;
+            r["Maths"] = 56;
+            r["Science"] = 67;
+
+            dt.Rows.Add(r);
+
+            r = dt.NewRow();
+            r["Name"] = "A";
+            r["English"] = 68;
+            r["Maths"] = 96;
+            r["Science"] = 87;
+
+            dt.Rows.Add(r);
+
+            DataView dv = dt.DefaultView;
+           // dv.Sort = "Name";
+            dv.Sort = "Percent desc";
+
+            GridView1.DataSource = dv;
+            GridView1.DataBind();
+
+        }
+    }
+Example: DataView.RowFilter to filter the datatable result:
+
+    .....
+   DataView dv = dt.DefaultView;
+   dv.RowFilter = "Name like '%z%'";
+// dv.RowFilter = "SrNo>=200"
+// dv.RowFilter = "Total>=200"
+// db.RowFilter = "English>=50 and Maths>=50"
+   ......
+
+
+Due to rises of LINQ and Entity Framework, Dataset API is not used commonly. 
+
+Provider API best practices
+===========================================================
+
+ 1. Always use "parameterized" SQL statement to avoid SQL injection and     string escape.
+
+ 2. Provider resources are memory hungry. If these resources are not disposed properly then your application might be victim of "Memory Leaks".
+
+    To dispose the "ADO" objects, the .net framework introduce "using" meachanism. This meachnism gaurantee that the object will be disposed even after an exeception is raises.
+
+
+   Syntax:
+
+   using(ClassName varName = new ClassName())
+    {
+          //statements
+     }
+   
+  Not all classes are IDisposal. You cannot use those classes which haven't implement IDisposal interface.
+
+
+  If you're not using the "using" block then you can dispose ADO object with the help of try...catch...finally block:
+
+
+
+  Example:
+
+    SqlConnection cn = null;
+
+
+    try {
+
+        cn = new SqlConnection();
+        ----
+
+     }catch(Exception ex){
+
+     } finally {
+          if(cn!=null){
+
+             try{ cn.Dispose(); } catch(Exception ex){}
+          }
+
+     }
+OR
+
+   using(SqlConnection cn=new SqlConnection())
+    {}
+
+
+Example:
+
+ using(SqlConnection cn=new SqlConection())
+  {
+     using(SqlCommand cmd=new SqlCommand())
+      {
+        cn.ConnectionString=@"...";
+        cmd.Connection =cn;
+        cmd.CommandText= "insert into emp values (@p1,@p3,@p2)";
+        cmd.Parameters.AddWithValue("@p1",TextBox1.Text);
+        cmd.Parameters.AddWithValue("@p3",TextBox2.Text);
+        cmd.Parameters.AddWithValue("@p2",TextBox3.Text);
+        cn.Open();
+        cmd.ExecuteNonQuery();
+        cn.Close();
+       }
+   }
+
+  

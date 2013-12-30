@@ -1,0 +1,193 @@
+Interface
+=================================================================
+
+What is the importance of "function declaration (in C/C++)" (or abstract method)?
+
+   Ans : It acts as a function pointer. We can store reference of          function/method in function pointer.
+
+Interface is an object-oriented way to declare function pointers. It means an interface only contains "abstract methods".
+
+For example,
+
+interface Test
+{
+   void write();
+   void examine();
+}
+
+
+"write" and "examine" are function pointer (also called Virtual Table) that can store memory reference of method that is defined by the class with same signature.
+
+
+For example,
+
+class EnglishTest : Test /* EnglishTest class implements the Test
+                            behavior */
+{
+   public void write() { Console.WriteLine("WriteEngTest");}
+   public void examine() { Console.WriteLine("ExamineEngTest");}
+ }
+
+class MathsTest : Test
+{
+   public void write() { Console.WriteLine("WriteMathsTest");}
+   public void examine() { Console.WriteLine("ExamineMathsTest");}   
+}
+
+Now, create a virtual table (Pointers)
+
+   Test a;  /* We've a.write and a.examine pointers having null */
+
+  // Create two objects,
+  
+   EnglishTest e=new EnglishTest();
+   MathsTest   m=new MathsTest();
+
+  //Store method references from "e" to "a"  
+
+    a = e; /* Now, a.write() points to e.write() and
+                   a.examine() points to e.examine()  */
+
+    a.write();
+    a.examine();
+
+    a = m;
+    a.write();
+    a.examine();
+
+
+========== Complete Example ==============
+
+using System;
+
+public interface Test
+{
+    void Examine();
+    void Write();
+}
+
+public class EnglishTest : Test
+{
+
+    public void Examine()
+    {
+        Console.WriteLine("Examine The English Test");
+    }
+
+    public void Write()
+    {
+        Console.WriteLine("Write English Test");
+    }
+}
+public class MathsTest : Test
+{
+
+    public void Examine()
+    {
+        Console.WriteLine("Examine The Maths Test");
+    }
+
+    public void Write()
+    {
+        Console.WriteLine("Write Maths Test");
+    }
+}
+class MainApp
+{
+    static void Main()
+    {
+        Test a;
+
+        EnglishTest e = new EnglishTest();
+        MathsTest m = new MathsTest();
+
+        a = m;
+        a.Write();
+        a.Examine();
+
+        a = e;
+        a.Write();
+        a.Examine();
+        
+    }
+}
+===========================================        
+
+The "interface" keyword declare interface reference datatype which store public abstract methods. The classes can implements one or more interfaces and if any of them class is failed to implements one or all methods described by the interface then this class must be marked as "abstract".
+
+For example,
+
+ abstract public class HindiTest : Test {
+     public void examine() {}
+ } 
+ because, "write" is not implemented by the "HindiTest" and hence it is  "abstract".
+
+
+Implementing multiple interfaces
+---------------------------------
+public interface Printer
+{
+    void Print();
+}
+public interface Screen
+{
+    void Preview();
+}
+class Document : Printer, Screen
+{
+
+    public void Print(){Console.WriteLine("Doc is printing...");}
+
+    public void Preview(){Console.WriteLine("Doc is previewed");}
+}
+class MainApp
+{
+    static void Main()
+    {
+        Document d = new Document();
+
+        Screen s = d;
+        Printer p = d;
+
+        s.Preview();
+        p.Print();
+    }
+}
+
+Hides the implementation of Interface using "explicit implementation syntax"
+------------------------------------------
+ 
+Interface method cannot use access-modifier within the implemented class:
+
+ class ImplementedClass : InterfaceName
+   {
+       returntype InterfaceName.MethodName() {}
+    }
+
+class Document : Printer, Screen
+{
+    void Printer.Print()  // Implemented method 
+    {
+        Console.WriteLine("Printing...");
+    }
+    void Screen.Preview() //Implemented Method
+    {
+        Console.WriteLine("Preview");
+    }
+    
+}
+class MainApp
+{
+    static void Main()
+    {
+        Document d = new Document();
+       //d.Print() or d.Preview() are not available so we need
+       //interface reference to call Print() and Preview() methods
+
+        Screen s = d;
+        Printer p = d;
+
+        s.Preview();
+        p.Print();
+    }
+}

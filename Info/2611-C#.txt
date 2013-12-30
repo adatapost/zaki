@@ -1,0 +1,272 @@
+Simple (Primitive) types
+--------------------------
+Simple types are "struct" and in C# we've number of aliases of simple types.
+
+Simple types uses "stack-frame" if they are used to create "local" variables. If they are used with "class" then they will use "heap-frame".
+
+Local variables -- Variables created inside the method/function are local variables and they are not initialized automatically. We must have to assign appropriate values before we use them.
+
+class Sample
+{
+  static void Main()
+   {
+     /* Local variables */
+
+     int no;
+     string name;
+  
+     System.Console.WriteLine(no); // will display error - 'no' is not
+				   // initialized
+
+     no = 10;
+     name = "Mr. Zaki";
+
+     System.Console.WriteLine(no + " " + name);
+    }
+}     
+ 
+Simple type literals/constants
+-------------------------------
+Integer literal -- Decimal, octal and hexadecimal value represent
+		   integer literal.
+
+                   10 - decimal
+                   0xF - Hexa
+                   012 - Octal
+
+Example,
+
+   byte no = 10;
+   short no1 = 399;
+   int no2 = 0xff; //255
+
+Long integer literal - Use "L" or "l" suffix with integer literal
+
+   e.g  long phone = 9834556677L;
+
+Double literal - value with decimal point
+
+  e.g  29999.234
+
+       double amount = 10000.23;
+
+Float literal - Use "F" or "f" suffix
+
+       e.g 10.10F
+
+       float per  = 90.43f;
+
+Decimal literal - Use "M" or "m" suffix
+
+      decimal amount = 10000.222223m;
+
+Char literal - single quote with ANSI or Unicode.
+
+     //ANSI 
+
+     char ch = 'A';
+
+     //Unicode
+
+     char ch='\u0000'; /* \u+four char hex */
+
+String literal - Double quote with @ verbatim operator
+
+
+   Double quotes with @ verbatim operator escape the string and 
+   preserve the whitespace so you can define multi-lines.
+
+   //Without @ operator
+
+   string path = "c:\tc\bin";  
+   Console.WriteLine(path);  // c:    in 
+
+   string path1 = @"c:\tc\bin";
+   Console.WriteLine(path1);  // c:\tc\bin
+
+  You can escape string by adding additional backspace,
+
+    string path = "c:\\tc\\bin" is equivalent to @"c:\tc\bin"
+
+Multi-line text:
+
+  string info=@"
+Hi,
+I'm abc from XYZ.
+
+Thanks";
+ 
+  Console.WriteLine(info);
+
+The "var" keyword
+-------------------
+ It is used to create "local" variables. The C# compiler define type of variable by value that is assigned to it.
+
+ Syntax:
+
+   var varName = value;
+
+
+For example,
+
+ var no = 10;  //int
+ var name = "Mr. Abc"; //string
+ var status = true;
+
+ Console.WriteLine(no + " " + name + " " + status);
+
+The "dynamic" keyword
+---------------------
+
+The CLR's runtime create variables based upon the assigned value during program execution. That means you can create single variable and store differe datatype value.
+
+ The "dynamic" can be used with local, fields, method parameters and return type.
+
+  Example,
+
+  dynamic x;
+
+  x= 10; //int
+  x++;
+  Console.WriteLine(x);
+
+  x= "Hi"; //string
+  Console.WriteLine(x);
+
+
+Data conversion
+================
+To convert value from one type to another type using different conversion and parsing methods:
+
+1. type cast operator  ()
+ 
+   int no = 10;
+   byte bno = no; // error -- cannot convert int to byte
+   
+   So we have to cast the "int" to byte
+
+    byte bno = (byte) no;
+
+    Ex:  char ch = 'A';
+         int no = (int) ch;// 65 - ASCII of 'A'
+         Console.WriteLine(no);
+
+2. Convert class methods
+
+   Syntax:  Convert.ToXXXXXX() where XXXXXX is name of simple CTS types
+
+   
+        double amount = 10000.29;
+
+        int no = Convert.ToInt32(amount);
+        Console.WriteLine(no);
+        Console.WriteLine(Convert.ToSingle(amount)); //float
+
+        
+Example :  Convert int to decimal, bin, hex and oct string
+
+        int no = 15;
+        Console.WriteLine(Convert.ToString(no));
+        Console.WriteLine(Convert.ToString(no,2));
+        Console.WriteLine(Convert.ToString(no, 16));
+        Console.WriteLine(Convert.ToString(no, 8));
+
+3. Parse convertion -- String type to appropriate simple type using
+   Parse and TryParse methods of simple types.
+
+  String to int 
+  ------------
+        string str = "100";
+
+        int no = int.Parse(str);
+        no++;
+        Console.WriteLine(no);
+
+  But above code will not work when value of str = "100.90". Here we   need to change the type float, double or decimal.
+
+      str = "1000.90";
+      var amount = double.Parse(str);
+ 
+  But, if str's value "100a.90" will throws an exception/error becuase   string is not formated properly.
+
+  Safe parsing using TryParse(string_data, out varName) method
+  -------------------------------------------------------------
+
+   The TryParse() method handle the error/exception if any and returns    true if parse success, returns false otherwise.
+
+   string str = "100a";
+   int no;
+
+   if(int.TryParse(str, out no))
+       Console.WriteLine("Success : " + no);
+   else
+       Console.WriteLine("Failed");
+
+
+The DateTime struct (type)
+===========================
+
+Ex: Retrive current instance of System's DateTime
+
+        DateTime now = DateTime.Now;
+        DateTime utc = DateTime.UtcNow;  //Universal Time (GMT)
+        Console.WriteLine(now);
+        Console.WriteLine(utc);
+Ex: Parse the string
+
+    String str = "11-31-2002"; //mm/dd/yy
+    DateTime dt = DateTime.Parse(str);
+    Console.WriteLine(dt.Day); //31
+    Console.WriteLine(dt.Month); //11
+    Console.WriteLine(dt.Year); //2002
+    Console.WriteLine(dt.Hour); //12
+
+Ex: Format the date (DateTime to string) using following format     characters.    
+
+    DateTime now = DateTime.Now;
+    Console.WriteLine(now.ToString("d")); //short date
+    Console.WriteLine(now.ToString("t")); //short time
+    Console.WriteLine(now.ToString("M")); //Month, day
+    Console.WriteLine(now.ToString("Y")); //Month, year
+    
+Use following format chars:
+ 
+dd - two digit day
+ddd - day name abbr
+dddd - full day name
+MM -- two digit month
+MMM -- month abbr
+MMMM -- Full month
+
+yy - two digit year
+yyy - full year
+
+H -  hour
+m - minute
+s - second
+t - am/pm
+
+
+Parse the DateTime string using appropriate formats.
+---------------------------------------------------
+        string str = "31-12-2012 14:22:33";
+        string[] format = { "dd-MM-yyyy HH:mm:ss", 
+                            "dd/MM/yyyy HH:mm:ss",
+                            "dd-MM-yyyy"};
+        DateTime dt;
+        
+        if (DateTime.TryParseExact(str, 
+            format, System.Globalization.CultureInfo
+                          .InvariantCulture, 
+              System.Globalization.DateTimeStyles.None, 
+              out dt))
+            Console.WriteLine(dt);
+        else
+            Console.WriteLine("Failed"); 
+  
+
+   
+  
+
+
+

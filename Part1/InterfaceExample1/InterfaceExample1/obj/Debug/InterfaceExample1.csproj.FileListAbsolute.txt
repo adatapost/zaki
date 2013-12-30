@@ -1,0 +1,5 @@
+c:\csnet\zaki\InterfaceExample1\InterfaceExample1\bin\Debug\InterfaceExample1.exe.config
+c:\csnet\zaki\InterfaceExample1\InterfaceExample1\bin\Debug\InterfaceExample1.exe
+c:\csnet\zaki\InterfaceExample1\InterfaceExample1\bin\Debug\InterfaceExample1.pdb
+c:\csnet\zaki\InterfaceExample1\InterfaceExample1\obj\Debug\InterfaceExample1.exe
+c:\csnet\zaki\InterfaceExample1\InterfaceExample1\obj\Debug\InterfaceExample1.pdb

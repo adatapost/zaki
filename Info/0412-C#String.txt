@@ -1,0 +1,63 @@
+Strings in .net framework
+============================================================
+There are two types of String classes:
+
+  1. System.String - It is immutable string object. We can not change
+		     content of string once it is assigned to object.
+  2. System.Text.StringBuilder  - It is mutable string object whose
+			content will be changed/updated.
+
+
+Immutable is a readyonly object that never allows its contents to be changed.
+  For example,
+
+     string s = "Hello";  //a new object created and assigned to "s"
+
+     s= s + " World";    // a new object created that contains "Hello                             World" and assigned to "s"
+
+Any string manipulation operation on "String" class object will creates new object each time resulting slowing the process and increasing memory usage.
+
+
+System.Text.StringBuilder class
+--------------------------------
+Mutable object means that object allow itself to grow or shink its size.
+
+Always use System.String (string) when we've fixed string literal
+Awlays use System.Text.StringBuilder when we need to concat or replace or deletion or insert operations.
+
+In following example, we will use StopWatch class to check time-effienciecy.
+
+class Test
+{
+ static void TestTheString()
+    {
+        System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
+        string str = "";
+        watch.Start();
+        for (int i = 1; i <= 100000; i++)
+        {
+            str = str + i;
+        }
+        watch.Stop();
+        Console.WriteLine(watch.ElapsedMilliseconds);
+
+    }
+    static void TestTheStringBuilder()
+    {
+        System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
+        System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+        watch.Start();
+        for (int i = 1; i <= 100000; i++)
+        {
+            sb.Append(i);
+        }
+        watch.Stop();
+        Console.WriteLine(watch.ElapsedMilliseconds);
+    }
+    static void Main()
+    {
+        //TestTheString();
+        TestTheStringBuilder();
+    }
+}

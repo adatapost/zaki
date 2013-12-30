@@ -1,0 +1,65 @@
+Common Properties of WebControl
+-------------------------------------------------------------------
+WebControl offers style properties including : BackColor, ForeColor, Width, Height, Font, AccessKey, Tooltip, TabIndex, Enable,Border,CssClass etc.
+
+Note: Do not use these properties to style the element. Use CssClass (Cascade stylesheet instead).
+
+1. Accesskey = single letter/digit
+   Set accesskey (hotkeys) - Use Alt + key to set focus to control.
+
+How to set default focus on specific tag?
+-------------------------------------------
+  <form defaultfocus="ControlID" ....> for non-content (not          created using master page) pages.
+
+
+  Or use ControlID.Focus() method -- call this method in your code-behind.
+
+
+How to set default button?
+---------------------------
+Default button is a button/linkbutton/imagebutton whose click event will be fired when an enter key is pressed on control other than button/imagebutton/linkbutton.
+
+ For non-content pages, <form defaultbutton="ButtonID" ..>
+
+ For content pages, use <asp:Panel> control.
+     Add your UI design inside the Panel and set           DefaultButton="ButtonID".
+
+How to set focus while pressing tab key?
+-------------------------------------------
+set TabIndex property. Default value is 0 and it is default tab order.
+
+Always use CssClass or "class" attribute
+----------------------------------------------
+ ASP.NET controls have CssClass to set "class-selector" and html tag uses "class" attribute to set "class-selector".
+
+There are number of CSS selectors:
+
+1. Universal selector  * (asrisk)
+2. tag or element selector - tag name itself used to behave as    "selector".
+
+    body 
+    {
+      font-size:1em;
+      font-familiy:sans-serif;
+     }
+
+3. class selector - User-defined word begins with period (.)
+
+4. id selector - User-defined word begins with # (hash) that is applied     using "id" attribute.
+
+5. selector1 > selector2 -- Descedent (children) selector 
+6. selector1, selector2, selector3 {} -- multiple selectors have common attributes.
+7. selector1 + selector2 -- Siblling selector
+8. selector1 selector2 - direct child selector 
+
+ 
+ 
+
+
+
+
+
+
+
+
+

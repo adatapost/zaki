@@ -1,0 +1,356 @@
+Example: Design Student class has two fields namely roll (int) and name(string). 
+
+
+class Student 
+{
+   public int roll;
+   public string name;
+}
+
+class MainApp 
+{
+   static void Main()
+   {
+      Student s = new Student();
+        //Test case - 1
+        Console.WriteLine(s.roll == 0);
+        Console.WriteLine(s.name == null);
+
+        s.roll = -1000;
+        s.name = "11dasf dsaklfja lksjf kl jdfklsfjdsk jdsklfds jldsjfdasf11";
+        Console.WriteLine(s.roll + " " + s.name);
+        //Test case - 2
+        Console.WriteLine(s.roll == 0);
+        Console.WriteLine(s.name == null);
+    }
+}
+
+In above example, choice of public fields is improper design. Any body can insert invalid or huge amount of data that consume huge amount of memory and also unstable the application.
+
+In next example, we will use "private" fields and "public" methods for the same.
+ 
+
+Note: keep fields private
+      keep methods/constructors/properties public
+
+Example:
+public class Student
+{
+    //Fields
+    private int roll;
+    private string name;
+
+    //methods - fields encapsualtion
+    public void SetRoll(int v) // Setter
+    {
+        if (v < 1 || v > 100)
+            return;
+
+        roll = v;
+    }
+    public int GetRoll()  //Getter
+    {
+        return roll;
+    }
+
+    public void SetName(string v)
+    {
+        if (v == null)
+            return;
+
+        if (v.Length < 5 || v.Length > 30)
+            return;
+
+        name = v;
+    }
+
+    public string GetName()
+    {
+        return name;
+    }
+
+    //Constructor -- To initialize the fields
+    public Student()
+    {
+        roll = 1;
+        name = "";
+    }
+}
+
+class MainApp
+{
+    static void Main()
+    {
+        Student s = null;
+        //Case - 1
+        Console.WriteLine(s == null);
+        s = new Student();
+        //Case - 2
+        Console.WriteLine(s == null);
+        //Case - 3
+        Console.WriteLine(s.GetRoll() == 0);
+        Console.WriteLine(s.GetName() == null);
+
+        s.SetRoll(101);
+        s.SetName("sda dasdsafdasfdsaf dasfdsafdasfdasfdsfds");
+        Console.WriteLine(s.GetRoll() + " " + s.GetName());
+    }
+}
+
+
+Example:  
+
+class Product
+{
+    int id;
+    string name;
+    decimal price;
+
+     //3 -setter, 3 -getter + constructor
+}
+ 
+Constructors -- It is an instance method of class that will be called automatically when you create an instance/object.
+
+Name of constructor method must be same as its class name.
+
+Constructor method should be public
+
+Constructor method can be overloaded.
+
+Example:  Add following constructors into "Student" class
+
+  //1. No argument constructor
+
+  public Student()
+   {
+      roll = 1;
+      name = "";  //empty string
+    }
+
+  //2. Two argument constructor
+
+  public Student(int mroll, string mname)
+  {
+      roll = mroll;
+      name = mname;
+   }
+
+//3. Two argument constructor
+
+  public Student(string mname, int mroll)
+  {
+      roll = mroll;
+      name = mname;
+   }
+
+
+
+and add following code in Main method,
+
+        Student m = new Student();
+        Console.WriteLine(m.GetName() + " " + m.GetRoll());
+        Student s = new Student(10, "Rajesh");
+        Console.WriteLine(s.GetName() + " " + s.GetRoll());
+
+        Student t = new Student("Zaki", 20);
+        Console.WriteLine(t.GetName() + " " + t.GetRoll());
+
+====== Complete Example ==================
+using System;
+public class Student
+{
+
+    //Fields
+    private int roll;
+    private string name;
+
+    //methods - fields encapsualtion
+    public void SetRoll(int v) // Setter
+    {
+        if (v < 1 || v > 100)
+            return;
+
+        roll = v;
+    }
+    public int GetRoll()  //Getter
+    {
+        return roll;
+    }
+
+    public void SetName(string v)
+    {
+        if (v == null)
+            return;
+
+        if (v.Length < 5 || v.Length > 30)
+            return;
+
+        name = v;
+    }
+
+    public string GetName()
+    {
+        return name;
+    }
+
+    //Constructor -- To initialize the fields
+    //1. No argument constructor
+
+    public Student()
+    {
+        roll = 1;
+        name = "";  //empty string
+    }
+
+    //2. Two argument constructor
+
+    public Student(int mroll, string mname)
+    {
+        roll = mroll;
+        name = mname;
+    }
+
+    //3. Two argument constructor
+
+    public Student(string mname, int mroll)
+    {
+        roll = mroll;
+        name = mname;
+    }
+
+}
+
+class MainApp
+{
+    static void Main()
+    {
+        Student m = new Student();
+        Console.WriteLine(m.GetName() + " " + m.GetRoll());
+        Student s = new Student(10, "Rajesh");
+        Console.WriteLine(s.GetName() + " " + s.GetRoll());
+
+        Student t = new Student("Zaki", 20);
+        Console.WriteLine(t.GetName() + " " + t.GetRoll());
+    }
+}
+=========== End Example =================================
+
+this variable
+==============
+
+"this" is implicit reference var of class and it is used to store reference of current (active) object when an instance method is requested. Note that "this" cannot be used with "static" context (method,property etc).
+
+We will use this keyword/variable to qualify instance members.
+
+For example,
+
+ public void SetRoll(int roll)
+ {
+   this.roll = roll; <------ argument
+         ^
+         |---- qualified with this and it is field
+  }
+
+And you can write like this:
+
+  public int GetRoll() { return roll;} OR
+  public int GetRoll() { return this.roll;}
+
+Property Method
+================
+
+C# introduce property method which is replacement of getter and setter method. With the help of property method, developer can easily construct getter/setter using following syntax:
+
+access typeName PropertyName
+{
+  get
+    {
+      return ...;
+     }
+  set
+    {
+       field =value;
+     }
+}
+
+get accessor returns a value of "typeName" specified at declaration.
+
+set accecss assign a "value" of "typeName" specified at declaration using automatic "value" variable.
+
+
+Example: 
+
+public class Student
+{
+    private int _roll;
+    private string _name;
+    int _eng, _maths, _sci;
+
+    public int Roll {get{return _roll; } set {_roll = value; } }
+    public string Name
+    {
+        set
+        {
+            _name = value;
+        }
+        get
+        {
+            return _name;
+        }
+    }
+
+    public int English { get { return _eng; } set { _eng = value; } }
+    public int Maths { get { return _maths; } set { _maths = value; } }
+    public int Science { get { return _sci; } set { _sci = value; } }
+
+    public int Total
+    {
+        get
+        {
+            return _eng + _maths + _sci;
+        }
+    }
+    public double Percent
+    {
+        get
+        {
+            return Total / 3.0;
+        }
+    }
+    public string Grade
+    {
+        get
+        {
+            double p = Percent;
+            if(p>=70) return "A";
+            if(p>=60) return "B";
+            return "C";
+        }
+    }
+}
+   
+class MainApp
+{
+    static void Main()
+    {
+        Student s = new Student();
+        s.Roll = 10;
+        s.Name = "Zaki";
+        s.Science = 88;
+        s.Maths = 8;
+        s.English = 78;
+
+        Console.WriteLine(s.Roll + " " + s.Name);
+        Console.WriteLine(s.Total);
+        Console.WriteLine(s.Percent);
+        Console.WriteLine(s.Grade);
+    }
+}
+
+
+
+
+
+
+
+

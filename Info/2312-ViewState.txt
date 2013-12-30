@@ -1,0 +1,36 @@
+ViewState
+===================================================================
+This is ASP.NET feature that persist value of control properties and user data into currenctly requested page. It is a dictionary to represent key-value pair data. The class name of ViewState property is StateBag and it is added into any sub-class of System.Web.UI.Control.
+
+The main job of ViewState is to store data of dynamically changed properties of controls. Note that the ViewState cannot preserve the value of "statically" changed properties.
+
+You can turn off this behaviour by setting "EnableViewState=False" for any control.
+
+To fully understand the ViewState, we must have to understand the Page-life cycle.
+
+The WebForm is itself a program which will be executed when anyone request it. In server-side, the webform(page) processing involves number of processing phases and developer intercept these processing phases by handling & overriding System.Web.UI.Page events and methods.
+
+The following phases or stages available in webform to attach our code:
+
+1. Page initialization -- It happens once when a page is request. In                           this phase Page and Control objects are 
+			  created, Page specific culture (language & country) is set, setting up master page, themese and so on.
+
+2. Page loading        -- Before this phase, the ASP.NET reads and deserialize the __VIEWSTATE data from client if request is not new (or subsequent request). Deserialized controls properties are re-assigned to newly created Page and Control objects.
+
+                          After loading ViewState data we can attach                           our code via Page_Load event.
+
+3. Validating Phase  --- In this phase ASP.NET Validation framework                          take care of "input" data and validate them
+                          accordingly.
+
+4. Control events   --- After validation phase, ASP.NET execute control  events like - TextChanged, Selection and Click events.
+
+5. DataBinding events -- After executing control events, at this phase data-binding will take place. (ie. To populate DropDown, GridView and so on).
+
+6. Render phase   ---  In this phase, ASP.NET instruct all controls to generate HTML markup based upon the value of properties. Then ASP.NET amass all changed properties into "StageBag" object (ViewState), serialize & encode the ViewState object (To convert ViewState object into String), insert <input type="hidden" name="__VIEWSTATE"/> element into page along with serialized viewstate.
+
+                       After inserting __VIEWSTATE hidden element, all markup is send to web-browser so the web-browser can display the dynamic content of HTML.
+
+                       This is the last phase in Page where you can change the properties of controls/page.
+
+7. Page dispose phase --- In this phase all page & control objects are garbage collected. You can handle Page_Unload event to plug your code.                  
+                       

@@ -1,0 +1,5 @@
+c:\csnet\zaki\DelegateExample\DelegateExample\bin\Debug\DelegateExample.exe.config
+c:\csnet\zaki\DelegateExample\DelegateExample\bin\Debug\DelegateExample.exe
+c:\csnet\zaki\DelegateExample\DelegateExample\bin\Debug\DelegateExample.pdb
+c:\csnet\zaki\DelegateExample\DelegateExample\obj\Debug\DelegateExample.exe
+c:\csnet\zaki\DelegateExample\DelegateExample\obj\Debug\DelegateExample.pdb

@@ -1,0 +1,242 @@
+Auto-implemented properties
+===========================
+
+This feature helps us to design a class easily. With this feature, we don't have to create fields and define the body of set and get accessors.
+
+Syntax:
+
+  access datatype PropertyName {get; set;}
+
+The C# compiler create fields and methods body automatically.
+
+Example:
+
+public class Student
+{
+   //auto-implemented properties
+   public int Roll {get;set;}
+   public string Name {get;set;}
+   public int English {get;set;}
+   public int Maths {get;set;}
+   public int Science {get;set;}
+   public int Total
+    {
+       get 
+          {
+            return Maths + English + Science;
+           }
+     }
+   //--do as per previous example
+}
+=== Complete Example ====
+using System;
+public class Student
+{
+    public int Roll { get; set; }
+    public string Name { get; set; }
+    public int English { get; set; }
+    public int Maths { get; set; }
+    public int Science { get; set; }
+    public int Total
+    {
+        get
+        {
+            return English + Maths + Science;
+        }
+    }
+    public double Percent
+    {
+        get
+        {
+            return Total / 3.0;
+        }
+    }
+    public string Grade
+    {
+        get
+        {
+            double p = Percent;
+            if(p>=70) return "A";
+            if(p>=60) return "B";
+            return "C";
+        }
+    }
+}
+
+   
+class MainApp
+{
+    static void Main()
+    {
+        Student s = new Student();
+        s.Roll = 10;
+        s.Name = "Zaki";
+        s.Science = 88;
+        s.Maths = 8;
+        s.English = 78;
+
+
+        Console.WriteLine(s.Roll + " " + s.Name);
+        Console.WriteLine(s.Total);
+        Console.WriteLine(s.Percent);
+        Console.WriteLine(s.Grade);
+    }
+}
+
+==== End Example =======
+
+Example of auto-impl properties and object initialization syntax
+-----------------------------------------------------------------
+
+Object initialization syntax allow us to set values to fields while creating an object.
+
+ Syntax:
+
+ ClassName varName = new ClassName() 
+  { 
+    property1= value1,
+    property2=value2,....
+   }; <----- Terminate the block
+
+OR
+
+   ClassName varName = new ClassName{ prop1=value1,... };
+
+Example:
+public class Student { /* as per previous example */ }
+
+and write following code in Main method:
+
+    Student s = new Student
+        {
+            Roll=10,Name="AA",
+            English=90,
+            Science=55,
+            Maths=87
+        };
+   Console.WriteLine(s.Total + " " + s.Percent  + " " + s.Grade);
+
+Example:
+
+public class Point
+{
+   public int X {get;set;}
+   public int Y {get;set;}
+}
+
+In Main:
+
+   Point one = new Point { X= 10, Y= 20};
+   Console.Write(one.X + "  " + one.Y);
+   
+Classes - How to use "composition" and "Inheritance" design?
+===============================================================
+
+In Composition design, one class can have members of other class.
+
+class Address
+{
+   public string City {get;set;}
+   public int Pin {get;set;}
+}
+class Student 
+{
+   public int Roll {get;set;}
+   public string Name {get;set;}
+   public Address LocalAddress {get;set;}
+   public Address PostalAddress {get;set;}
+
+   //Initialization
+   public Student()
+    {
+        Roll = 1;
+        Name = "";  // string.Empty;
+        LocalAddress = new Address();
+        PostalAddress = new Address();
+     } 
+}
+class MainApp
+{
+  static void Main()
+   {
+     Student s=new Student();
+     s.Roll = 10;
+     s.Name = "A";
+     s.LocalAddress.City = "Meh";
+     s.LocalAddress.Pin = 384001;
+
+     s.PostalAddress.City = "Pat";
+     s.PostalAddress.Pin = 340001;
+
+     Console.WriteLine(s.Roll + " " + s.Name);
+     Console.WriteLine(s.LocalAddress.City + " " + s.LocalAddress.Pin);
+     Console.WriteLine(s.PostalAddress.City + " " + s.PostalAddress.Pin);
+    }
+ }
+
+Or you can initialize object:
+
+  Student s = new Student
+        {
+            Roll = 1,
+            Name = "A",
+            LocalAddress = new Address 
+             {                     
+              City="Meh",Pin=222,Street="1st" 
+              },
+            PostalAddress = new Address 
+                { 
+                    City = "Pat", Pin = 111, Street = "3rd" 
+               }
+        };
+
+ Example: Create Rect,Circle and Triangle classes using Point objects.
+
+  class Point 
+   {
+     public int X {get;set;}
+     public int Y {get;set;}
+    }
+
+  class Rect
+    {
+       public Point Start {get;set;}
+       public Point End {get;set;}
+       public Rect() { Start = new Point(); End = new Point();}
+     }
+ class Circle
+   {
+     public Point Location {get;set;}
+     public int Radius {get;set;}
+    }
+
+  Hint:
+
+     Rect r=new Rect
+      {
+          Start = new Point { X = 10, Y =10 },
+          End = new Point { X = 100, Y =100 }
+       };
+
+Important:   Has/Have relationship between classes is known as "Composition". For example
+               Rect has Point objects
+               Student has Address objects
+             90% of your application has "composition" relationship.
+
+Example:
+
+Subject [ subjectName, totalMarks]
+
+Standard [ stdName]
+
+Exam [Subject, Standard, Date]
+
+Student [ Roll,Name]
+
+StudentExam [Student,Exam, MarksObtain] 
+
+Example:
+
+Customer [Name,Address]
+Bank [ Name,Address]
+Account [Bank, Customer, AccountNumber]

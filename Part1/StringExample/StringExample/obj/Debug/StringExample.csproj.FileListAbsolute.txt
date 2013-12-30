@@ -1,0 +1,6 @@
+c:\csnet\zaki\StringExample\StringExample\bin\Debug\StringExample.exe.config
+c:\csnet\zaki\StringExample\StringExample\bin\Debug\StringExample.exe
+c:\csnet\zaki\StringExample\StringExample\bin\Debug\StringExample.pdb
+c:\csnet\zaki\StringExample\StringExample\obj\Debug\StringExample.csprojResolveAssemblyReference.cache
+c:\csnet\zaki\StringExample\StringExample\obj\Debug\StringExample.exe
+c:\csnet\zaki\StringExample\StringExample\obj\Debug\StringExample.pdb

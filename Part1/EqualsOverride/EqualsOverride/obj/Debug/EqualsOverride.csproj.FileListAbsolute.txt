@@ -1,0 +1,6 @@
+c:\csnet\zaki\EqualsOverride\EqualsOverride\bin\Debug\EqualsOverride.exe.config
+c:\csnet\zaki\EqualsOverride\EqualsOverride\bin\Debug\EqualsOverride.exe
+c:\csnet\zaki\EqualsOverride\EqualsOverride\bin\Debug\EqualsOverride.pdb
+c:\csnet\zaki\EqualsOverride\EqualsOverride\obj\Debug\EqualsOverride.exe
+c:\csnet\zaki\EqualsOverride\EqualsOverride\obj\Debug\EqualsOverride.pdb
+c:\csnet\zaki\EqualsOverride\EqualsOverride\obj\Debug\EqualsOverride.csprojResolveAssemblyReference.cache

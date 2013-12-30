@@ -1,0 +1,92 @@
+The .net framework
+===================
+
+What is .net framework?
+
+It is programming and runtime environment through which we can develop, deploy and execute applications in highly distributed environment of the Internet.
+
+[Prior to the .net framework, the DNA - Distributed InterNetwork Application Architecture framework exists on window platform from Microsoft. The DNA framework is also exists with Visual C++ language & libraries.]
+ 
+
+What do you meant by the term "Framework"?
+
+ It is a bundle of "libraries", "tools", and "technologies" so the develop can laverage the functionalities of such tools & technologies to build applications rapidly.
+
+
+In fact, the .net framework is itself set of services which are started with operating system services and exposed to us (developers) in form of system level and abstracted classes. The .net framework consists -- execution environment and development environment.
+
+
+Components of the .net framework
+=================================
+Three major components that consitute the .net framework are :
+
+   1. Common Language Infrastructure (CLI)
+   2. Common Types System (CTS)
+   3. Common Language Runtime (CLR)
+
+CLI
+====
+
+Common Language Infrastructure is a guideline for the people who wants to use the .net framework. There are different purpose and kind of guidelines ranging from programming language, compilation, file foramt to program execution. These guidelines are also called "Specifications". (Common Language Specifications - CLS).
+
+For example, C# & VB.NET languages are designed as per CLS. In other words, programming languages that conforms CLS standards can use the .net framework.
+
+CLS-Compliant language : Language designed  using CLS.
+
+CLS-Compalint code : Code written using CLS-compliant language.
+
+MSIL - Microsoft Intermediate Language
+----------------------------------------
+
+ It is compiler intermediate language of the .net framework. It means  it is the language of "C#" and "VB.NET".
+
+  When we compile C# or VB code, the C# or VB compiler produce "IL" code of C# or VB instructions and generate an assembly (.exe or .dll) which contains "IL instructions/code".
+
+
+CTS
+====
+
+It is the class (TYPE) library of the .net framework that is too developed using CLI guidelines and IL language.
+
+
+In general, CTS is grouped into two libraries:
+
+   1. Base class library -- These are system-level types.
+
+   2. Extended class library -- These are application specific types.
+
+
+ Base class library includes : Primitive types, Input/Ouput, Networking, Threading, Remoting, Globalization/Localization and so on.
+
+ Extended class library components are : ASP.NET, ADO.NET, WCF, WPF,
+ EDM,WinForm and so on.
+  WWF - Window Workflow Foundation
+  Silverlight
+  LINQ - Language Integrated Query
+  XML Parser
+  JSON Parser
+  
+
+Memory Architecture of .net framework types
+-------------------------------------------
+
+ The .net application uses RAM as per the memory managers of the .net  framework assign RAM to them.
+
+ When we launch(run) the application, the .net franework memory manager allocate 1 MB memory block called "Stack Frame" for local variables, method parameters, method return value and method call.
+
+ In case, if more memory is required by the application them memory manager will allocate memory block called "Heap Frame".
+
+
+ Stack Frame memory area is fixed sized (1 MB) but heap frame memory are can be very from 1 byte to 2GB or more.
+
+ Stack Frame will be allocated and deallocated by the memory manager implicitly.
+
+ The Heap frame is allocated when user issue the "new" keyword (ie.  instantiate the class, array etc) and will be deallocated when that heap is no longer needed. The heap is deallocated by the Garbage Collection service of memory manager.
+
+
+ 
+
+
+
+
+

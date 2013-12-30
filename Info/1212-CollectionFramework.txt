@@ -1,0 +1,131 @@
+The .net collection framework
+====================================================================
+
+With .net framework, we have two set of collection framework. In framework 1.1 and before there wasn't generics. Generics introduces in ver 2.0. So we've non-generic collection (System.Collections) and
+                  generic collection (System.Collections.Generic).
+
+
+In the base, there are some interfaces which defines behavior of collection framework classes. These interfaces are : IEnumerator, IEnumerable, ICollection, IList, IDictionary and so on. 
+
+IEnumerator : It describes how to traverse the collection.
+
+IEnumerable : It describes that the TYPE has "IEnumerator"
+
+ICollection : It describes that the TYPE is member of collection 		framework.
+
+IList       : It describes that the TYPE has an ability to               represent ordered-list data - linked list, stack , queue
+		etc.
+
+IDictionary  : It describes that the TYPE has ability to represent                "Key-Value" pair of collection. Where "Key" must be
+	        unique and non-null.
+
+
+Example: String and Array are example of "IEnumerable" so here we will use IEnumerator to traverse arrays and string:
+
+First of all import System.Collections.Generic and System.Collections namespaces and write code in Main: 
+
+        string name = "Hello";
+
+        //foreach will call "GetEnumerator()" and its methods
+        //implicitly.
+        foreach (char ch in name) 
+            Console.WriteLine(ch);
+
+        //And alternate of foreach is:
+
+       IEnumerator<char> i = name.GetEnumerator();
+        while (i.MoveNext())
+        {
+            Console.WriteLine(i.Current);
+        }
+
+ 
+        int[] nos = { 11, 22, 33 };
+        foreach (var n in nos)
+            Console.WriteLine(n);
+
+        //Non-generic
+
+        IEnumerator  j = nos.GetEnumerator();
+        while (j.MoveNext())
+        {
+            Console.WriteLine(j.Current);
+        }
+
+
+yield return keyword
+-----------------------
+This keyword insert an elements into IEnumerable<T> so we can easily create custom IEnumerable without implementing IEnumerable<T>.
+
+Example:
+
+  //Without implementing IEnumerable<T> interface
+  static IEnumerable<int> GetSomeNos()
+    {
+        yield return 10;
+        yield return 20;
+        yield return 30;
+    }
+    static void Main()
+    {
+        var nos = GetSomeNos();
+        foreach (var n in nos)
+            Console.WriteLine(n);
+    }
+
+Example: By implementing IEnumerable<T>
+
+class MyColl : IEnumerable<int>
+{
+    public IEnumerator<int> GetEnumerator()
+    {
+        yield return 11;
+        yield return 12;
+        yield return 13;
+    }
+    ......
+    .......
+}
+and code in Main:
+
+        MyColl coll = new MyColl();
+        foreach (var t in coll)
+            Console.WriteLine(t);
+
+
+Example: Extension method to get odd/even numbers and find sum of elements.
+
+public static class MyExtension
+{
+    public static IEnumerable<int> Odd(this int[] nos)
+    {
+        foreach (var t in nos)
+        {
+            if (t % 2 != 0)
+                yield return t;
+        }
+    }
+    public static int MySum(this IEnumerable<int> nos)
+    {
+
+        int sum = 0;
+        foreach (var t in nos)
+            sum = sum + t;
+        return sum;
+    }
+}
+class Test
+{
+    static void Main()
+    {
+        int[] nos = { 1, 22, 3, 44, 55, 6, 7, 89, 62 };
+        var oddNos = nos.Odd();
+        foreach (var t in oddNos)
+            Console.WriteLine(t);
+
+        Console.WriteLine(nos.MySum());
+        Console.WriteLine(oddNos.MySum());
+    }
+}
+PS: Change Odd method parameter type to IEnumerable<T>
+      ... Odd(this IEnumerable<int> nos) {...}

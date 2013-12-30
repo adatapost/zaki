@@ -1,0 +1,16 @@
+﻿body {
+    background: #3034ff;
+    color:white;
+}
+
+h1{
+    color:#f0f5e2;
+    font-size:4em;
+}
+
+a{
+    text-decoration:none;
+}
+a:hover{
+    text-decoration:underline;
+}

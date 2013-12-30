@@ -1,0 +1,6 @@
+c:\csnet\zaki\basics\basics\bin\Debug\basics.exe.config
+c:\csnet\zaki\basics\basics\obj\Debug\basics.csprojResolveAssemblyReference.cache
+c:\csnet\zaki\basics\basics\bin\Debug\basics.exe
+c:\csnet\zaki\basics\basics\bin\Debug\basics.pdb
+c:\csnet\zaki\basics\basics\obj\Debug\basics.exe
+c:\csnet\zaki\basics\basics\obj\Debug\basics.pdb

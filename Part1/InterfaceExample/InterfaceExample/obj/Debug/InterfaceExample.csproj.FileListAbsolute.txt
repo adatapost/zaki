@@ -1,0 +1,6 @@
+c:\csnet\zaki\InterfaceExample\InterfaceExample\bin\Debug\InterfaceExample.exe.config
+c:\csnet\zaki\InterfaceExample\InterfaceExample\bin\Debug\InterfaceExample.exe
+c:\csnet\zaki\InterfaceExample\InterfaceExample\bin\Debug\InterfaceExample.pdb
+c:\csnet\zaki\InterfaceExample\InterfaceExample\obj\Debug\InterfaceExample.csprojResolveAssemblyReference.cache
+c:\csnet\zaki\InterfaceExample\InterfaceExample\obj\Debug\InterfaceExample.exe
+c:\csnet\zaki\InterfaceExample\InterfaceExample\obj\Debug\InterfaceExample.pdb

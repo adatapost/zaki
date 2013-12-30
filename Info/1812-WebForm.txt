@@ -1,0 +1,90 @@
+WebForm and page parsing & compilation
+===================================================================
+
+ASP.NET WebForm web application is made up of number of special purpose programs called "WebForm" whose extension is ".aspx". The WebForm is a sub-class of System.Web.UI.Page class. When you create .aspx file, the application server implicitly parse that .aspx file and transform it to .cs or .vb class.
+
+ Then the aspnet_compiler.exe tool (located at framework home directory) will compile .cs/.vb code into .dll each time when the content of .aspx is updated.
+
+ 
+Request----> If not compiled ----> Compile and generate DLL
+             |                         |
+             |                         V
+Response<----|--->Execute the code from compiled DLL  
+
+What will be the default compiler of .aspx page?
+---------------------------
+Its VB.NET (vbc.exe)
+
+How to change VB lang to C#?
+-------------------------------
+Use <%@page language="C#"%> directive at the begining of .aspx page.
+
+In VS, you can add .aspx page using one of the two templates:
+
+   1. Single aspx page - code inline page model
+   2. Two page - Code behind page model
+
+In single page model, Html/Css/JavaScript and C# code will be stored into same page. There is no clean seperation of client and server code in code-inline model.
+
+Code behind model has .aspx to present the markup and .aspx.cs or .aspx.vb for code. Code will be stored into seperate partial class.
+
+What is the purpose of "directives"? (<%@ Page ....%>)
+---------------------------------
+ 
+ Directives are instructions to the "Parser/Compiler" to specify the page specific information before compilation starts.
+
+ e.g sample.aspx
+ ----------------
+ <%@ Page Language="C#" %>
+ <%@ Import Namespace = "System.Text" %>
+ <%
+   StringBuilder sb=new StringBuilder();
+   sb.Append("One");
+   sb.Append("Two");
+   Response.Write(sb.ToString());
+ %>
+ 
+
+What is the purpose of "AutoEventWireUp"?
+--------------------------------------------
+
+Events are delegate and they need exact singnature of function/method. The "true" value to AutoEventWriteUp describes that no need to write down whole/exact syntax for page events -- page_load, page_init, page_preinit, page_prerender, page_unload and so on.
+
+
+ 
+PS: Default value of AutoEventWireUp is "true".
+
+To write events in inline-code, use
+
+   <script runat="server">
+        public void page_load() {} 
+       ......
+    </script>
+
+to define methods and event handlers and use scriptlet <%..%> and 
+<%=expr%> code tags to put executable statement.
+
+<%
+  //local variables and executable statements
+
+  int no = 10;
+  for(int i=1;i<=no;i++)
+   {
+     Response.Write("<br/>" + i);
+    }
+%>
+
+<p>Value of no <%=no%>
+
+
+<%=no%> is equivalent to 
+
+<%
+ Response.Write(no);
+%>
+ 
+   
+  
+
+
+          

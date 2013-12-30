@@ -1,0 +1,5 @@
+c:\csnet\zaki\DelegateAnonymous\DelegateAnonymous\bin\Debug\DelegateAnonymous.exe.config
+c:\csnet\zaki\DelegateAnonymous\DelegateAnonymous\bin\Debug\DelegateAnonymous.exe
+c:\csnet\zaki\DelegateAnonymous\DelegateAnonymous\bin\Debug\DelegateAnonymous.pdb
+c:\csnet\zaki\DelegateAnonymous\DelegateAnonymous\obj\Debug\DelegateAnonymous.exe
+c:\csnet\zaki\DelegateAnonymous\DelegateAnonymous\obj\Debug\DelegateAnonymous.pdb

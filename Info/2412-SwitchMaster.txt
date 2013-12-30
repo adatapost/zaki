@@ -1,0 +1,21 @@
+Switch master pages
+-------------------------------------------------------------------
+To change master of "content" page, handle the "page_preinit" event and set MasterPageFile property:    MasterPageFile = "~/Two.master";
+
+Example:
+
+   string masterPage = "~/One.master";
+    public void page_preinit()
+    {
+        if (Session["master"] != null)
+            masterPage = Session["master"].ToString();
+
+        MasterPageFile = masterPage;
+    }
+ 
+And click event code:
+
+       Session["master"] = "~/Two.master";
+        Response.Redirect(Request.Url.ToString());
+   
+

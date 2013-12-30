@@ -1,0 +1,6 @@
+c:\csnet\zaki\CastOperator\CastOperator\bin\Debug\CastOperator.exe.config
+c:\csnet\zaki\CastOperator\CastOperator\bin\Debug\CastOperator.exe
+c:\csnet\zaki\CastOperator\CastOperator\bin\Debug\CastOperator.pdb
+c:\csnet\zaki\CastOperator\CastOperator\obj\Debug\CastOperator.csprojResolveAssemblyReference.cache
+c:\csnet\zaki\CastOperator\CastOperator\obj\Debug\CastOperator.exe
+c:\csnet\zaki\CastOperator\CastOperator\obj\Debug\CastOperator.pdb

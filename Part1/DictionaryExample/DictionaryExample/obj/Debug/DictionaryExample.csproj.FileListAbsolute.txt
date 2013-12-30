@@ -1,0 +1,5 @@
+c:\csnet\zaki\DictionaryExample\DictionaryExample\bin\Debug\DictionaryExample.exe.config
+c:\csnet\zaki\DictionaryExample\DictionaryExample\bin\Debug\DictionaryExample.exe
+c:\csnet\zaki\DictionaryExample\DictionaryExample\bin\Debug\DictionaryExample.pdb
+c:\csnet\zaki\DictionaryExample\DictionaryExample\obj\Debug\DictionaryExample.exe
+c:\csnet\zaki\DictionaryExample\DictionaryExample\obj\Debug\DictionaryExample.pdb

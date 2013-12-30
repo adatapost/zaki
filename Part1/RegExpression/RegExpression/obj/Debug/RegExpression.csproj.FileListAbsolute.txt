@@ -1,0 +1,5 @@
+c:\csnet\zaki\RegExpression\RegExpression\bin\Debug\RegExpression.exe.config
+c:\csnet\zaki\RegExpression\RegExpression\bin\Debug\RegExpression.exe
+c:\csnet\zaki\RegExpression\RegExpression\bin\Debug\RegExpression.pdb
+c:\csnet\zaki\RegExpression\RegExpression\obj\Debug\RegExpression.exe
+c:\csnet\zaki\RegExpression\RegExpression\obj\Debug\RegExpression.pdb

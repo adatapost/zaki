@@ -1,0 +1,53 @@
+The Path of resources (program or pages or files)
+--------------------------------------------------------------
+
+The resource in your webapp is referred using :
+
+ URL  : Uniform Resource Locator - e.g http://www.googe.com
+
+ URI  : Uniform Resource Identifier - It describes the resource name
+        e.g
+
+         http://localhost/sample/index.aspx
+ URN : Uniform Resource NAme 
+
+         e.g sample/index.aspx 
+
+In ASP.NET, the root operator ~ is used to define a root-relative path.
+
+  For example, you've hello.png under the images folder then the path     for ASP.NET control <asp:Image /> will be:
+
+    <asp:Image ImageUrl="~/images/hello.png"/>
+
+  Note that you cannot use ~ root operator for HTML tags:
+
+    <img src="~/images/hello.png"/> will not works. In this case we've
+    to prepare path manually:
+
+     <img src="images/hello.png"/> if web-document and "images" folder
+					are in same parent.
+
+     <img src="../images/hello.png"/> when web-document inside another
+					folder.
+     
+Absolute path and relative path
+=================================================================
+Relative path: In relative-path, base path is ignored or not mentioned.
+
+    For example -  /images/one.jpg
+
+Absolute path: It is the fully qualified file system location of resource.
+
+   For example: c:\csnet\zaki\sample\images\one.jpg
+
+   With disk or file input-output, we must have to use "absolute" path. File or Disk I/O will not work with relative path.
+
+   For example, If we wish to delete "images/one.jpg" then we must have to obtain/create absolute path:
+
+     Server.MapPath(relativePAth) -- method convert relative path to absolute path or real path.
+
+    string virtualPath = "~/images/one.jpg";
+    string realPath = Server.MapPath(virtualPath);
+
+    System.IO.File.Delete(realPath); <-- To delete a file. 
+ 

@@ -1,0 +1,67 @@
+ASP.NET Themes
+--------------------------------------------------------------------
+
+Themes are special purpose properties to design the ASP.NET controls and HTML elements. It would be better if you choose "CSS" instead of "themes".
+
+In fact the "Theme" is collection of .css, images and .skin files. You can define CSS selectors in .css files and define ASP.NET control attributes in .skin file.
+
+Example: 
+
+Step1: Create two theme folders namey "Red" and "Blue".
+Step2: add style.css in each folder and also add .skin in each folder.
+
+Note that the Theme are special purpose ASP.NET folders. You can create "Theme" folder by selecting "ASP.NET folder" menu (Right mouse click on website or Choose webSite Menu).
+
+Red/
+    style.css -- style attributes from HTML elements
+    xyz.skin  -- style attribute for ASP.NET Controls.
+
+         In .skin file, you can define style for a specific class of controls or a specific control.
+
+         Style for a class of control:
+
+           <asp:ClassName 
+               runat="server" BackColor="Red" ForeColor="White"/>
+
+              Where ClassName may be Button,TextBox etc.
+
+
+        Style for a specific control (named skin):
+             We've to add "SkinID" attribute for ASP.NET control.
+
+         e.g
+
+          <asp:Button skinId="softButton" 
+                 runat="server" BackColor="#cc2200" ForeColor="White"/>
+
+        and to apply "softButton", set Button1.SkinId="softButton"
+         property.
+
+
+Set Theme dynamically
+-------------------------
+Add two buttons to switch the Theme.
+
+   public void page_preinit()
+    {
+        string theme = "Blue";
+       if (Session["theme"] != null)
+            theme = Session["theme"].ToString();
+
+        Theme = theme;
+    }
+    
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Session["theme"] = "Red";
+        Response.Redirect(Request.Url.ToString());
+    }
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        Session["theme"] = "Blue";
+        Response.Redirect(Request.Url.ToString());
+    }
+ 
+    
+
+ 

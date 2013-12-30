@@ -1,0 +1,66 @@
+﻿/* Reset the margins */
+html, body, form, table, h1,h2,h3,h4,h5,h6,div, header, footer, nav,aside, section, article{
+    margin:0px;
+}
+body{
+    font-family:sans-serif;
+    font-size:1em;
+}
+header{
+  height:100px;
+  background:blue;
+  color:white;
+}
+nav{
+    background:#3ee;
+    color:orange;
+    padding:10px;
+}
+
+nav a{
+    color:black;
+    text-decoration:none;
+    padding:10px;
+}
+nav a:hover{
+    background:#eee;
+}
+footer{
+    text-align:center;
+    background:green;
+}
+article{
+    min-height:400px;
+}
+
+h1+p{
+    color:blue;
+}
+.main{
+    width:990px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+article > h1
+{
+    border:1px solid red;
+}
+p code{
+    padding:3px 10px 3px 10px;
+    
+    border:1px solid #22f;
+    border-radius:4px;
+    background:#66c;
+}
+
+input[type="submit"]{
+    background:none;
+    border:1px solid #eee;
+    border-radius:5px;
+    padding:4px 10px 4px 10px;
+}
+
+input[type="submit"]:hover{
+   background:#3ee;
+}

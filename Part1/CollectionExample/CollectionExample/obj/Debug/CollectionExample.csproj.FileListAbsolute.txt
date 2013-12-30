@@ -1,0 +1,6 @@
+c:\csnet\zaki\CollectionExample\CollectionExample\bin\Debug\CollectionExample.exe.config
+c:\csnet\zaki\CollectionExample\CollectionExample\bin\Debug\CollectionExample.exe
+c:\csnet\zaki\CollectionExample\CollectionExample\bin\Debug\CollectionExample.pdb
+c:\csnet\zaki\CollectionExample\CollectionExample\obj\Debug\CollectionExample.csprojResolveAssemblyReference.cache
+c:\csnet\zaki\CollectionExample\CollectionExample\obj\Debug\CollectionExample.exe
+c:\csnet\zaki\CollectionExample\CollectionExample\obj\Debug\CollectionExample.pdb

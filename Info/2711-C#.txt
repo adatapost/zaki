@@ -1,0 +1,195 @@
+Access modifiers 
+==============================================================
+ 
+There are set of modifiers that controls the visibility of "components/types". In C# we've five access modifiers:
+
+1. public - public entities are visible to everyone -- inside and 	    outside the type and assembly.
+
+2. private - private entities are visible to inside the containing type
+	     in which they are delcared or created.
+
+3. internal - interal entities are visible in any type within the 		assembly. They are not visible in other "assemblies".
+
+4. protected - protected entities are same as "private" except they are
+		visible in sub-types. (sub-classes)
+
+5. protected internal - These entities are visible in sub-classes of 		other as well as same assemblies.
+
+Top level types and accessiblity
+================================
+Types which are not nested are called top-level. Top-level types must be public or internal.You cannot use other modifiers for top-level types and default is "internal".
+
+ For example,
+
+ private class Hello {}  is illegal
+ 
+ public class Hello {} is valid
+ class Hello {} - it is internal and valid
+Or
+ internal class Hello {}
+
+
+class A
+{  <--- Top level
+   class B <---- Inner/Nested
+   { 
+   }
+}
+ 
+
+Accessibility of nested members
+=================================
+
+Following table describe the accesibility of nested members
+
+TypeName	Default Access		Can be changed
+------------------------------------------------------
+class		private			private, internal, public,
+					protected and 
+					protected internal
+
+interface	public			N.A (Not Applicable)
+
+struct		private			private, internal, public
+enum		public			N.A
+
+delegate 	N.A			N.A
+
+Note: struct type doesnot support inheritance that's why protected is not used.
+
+      delegate - This datatype allow us to store refereces of methods (function -- it is equivalent to function pointer in c/c++). (Closure)
+
+Naming conventions
+===================
+It is the recomendation from develop comminities that you should use following "naming" to style your types.
+
+1. Use "PascalCase" - capitalize the first letter of each word, for    class name, method, property.
+   for example:
+
+     public class HelloApplication
+      {
+           public string AboutMe() {}
+       }
+2. Use "lower" or "camelCase" for private entities -- fields of your    type should be lower/camelCase".  
+
+3. Some people uses underscore as first char for fields.
+ 
+   for example,
+
+    public class Employee
+     {
+         private int _id;
+         private string _firstName;
+         private string lastName;
+         .....
+      }
+4. Keep file name same as a type that is defined in it so we can easily    search the type while developing an app.
+
+
+Design the class
+==================
+ Following guidelines describe the minimum component/elements to be  included while developing a type.
+
+ 1. Fields must be private
+ 2. Encapsulate the private fields using properties or     getter/setter methods.
+ 3. Add necessary constructors to initialize the fields.
+ 4. Define public business methods. -- comparision, equality etc.
+
+Fields Or Data Members 
+======================
+Field is a placeholder (void) and name of that placeholder. When we creates an instance, the CLR will allocate appropriate amount of memory as per field definition to construct an "object or heap".
+
+
+ There are two types of fields:
+    
+   1. Instance fields and
+   2. static fields
+
+Static fields -- The static keyword is used to create "static" field  which are allocated (created) once per application. 
+
+Instanc fields - Instance fields are created whenever we use "new" keyword along with that class name in which they are created. Everytime a "new" copy of instance field will be available while creating an object.
+
+Static members are accessed via ClassName.MemberName syntax.
+Instance members requires referenceVariable.memberName syntax.
+
+Example:
+using System;
+class Test
+{
+    public int no;  // instance field
+    public static int no1; // static field
+}
+
+class MainApp
+{
+    static void Main()
+    {
+        Test.no1 = 10;
+
+        Test a = new Test();  // Will allocate memory for non-static or instance fields
+        Test b = new Test();
+
+        a.no = 1;
+        b.no = 2;
+
+        Console.WriteLine(a.no); //1
+        Console.WriteLine(b.no); //2
+        Console.WriteLine(Test.no1); //10
+    }
+}
+
+Reference variable and object
+==============================
+
+Reference variable is 4 bytes long to store memory address of an object. You can assign special value "null" to the reference variable that indicates an absence of an object (Object is missing).
+
+ ReferenceTypeName varName; <--- Class, Interface, Delegate and Array
+                                 are four reference types.
+
+
+ e.g string name = "Raj";
+             ^
+             |---- Reference variable that contains memory address of
+		   an object whose content is "Raj".
+
+     string address = null; <-- It means that is no object at all.
+
+
+
+Example demonstrate how to create an object, how to assign object reference or how to copy object reference.
+
+using System;
+class Test
+{
+    public int no;
+}
+class MainApp
+{
+    static void Main()
+    {
+        Test a = new Test(); //Create a new object and save its
+                             //reference to "a" ref var
+        Test b = a;          //Now, copy the value of "a" - that is
+                             //reference of an object to "b"
+        a.no = 10;
+        b.no = 20;
+        Console.WriteLine(a.no + " " + b.no); // 20 20
+    }
+}
+In above example, reference variable "a" and "b" will be created into "stack frame" and of course an object will be created into "Heap frame".
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

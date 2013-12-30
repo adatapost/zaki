@@ -1,0 +1,30 @@
+IsPostBack and ViewState
+=================================
+
+Properites of controls changed during page-execution are added into the "ViewState".
+Ex:
+
+1. Add DropDownList1  + Button1
+2. Page_Code:
+
+   DropDownList1.Items.Add("Mehsana");
+   DropDownList1.Items.Add("Surat");
+
+3. Now run this page and see what happen? Cities are added cumulativey    into "DropDownList" due ViewState. [And we cannot disabled the    ViewState].
+
+
+
+
+To address this issue, ASP.NET Page.IsPostBack boolean property returns "false" on first request and returns "true" on subsequent requests.
+
+You can change control properties on first request only:
+
+
+   if (IsPostBack==false) // !IsPostBack
+        {
+            DropDownList1.Items.Add("Mehsana");
+            DropDownList1.Items.Add("Surat");
+        }
+
+NOTE: Whenever you want to assign data to control via properties, always wrap code in IsPostBack block especially in Page_Init/Load events. (DropDown,List,GridView,DataList,ListView and so on).
+

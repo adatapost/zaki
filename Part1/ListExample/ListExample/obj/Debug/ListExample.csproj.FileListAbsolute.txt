@@ -1,0 +1,6 @@
+c:\csnet\zaki\ListExample\ListExample\bin\Debug\ListExample.exe.config
+c:\csnet\zaki\ListExample\ListExample\bin\Debug\ListExample.exe
+c:\csnet\zaki\ListExample\ListExample\bin\Debug\ListExample.pdb
+c:\csnet\zaki\ListExample\ListExample\obj\Debug\ListExample.csprojResolveAssemblyReference.cache
+c:\csnet\zaki\ListExample\ListExample\obj\Debug\ListExample.exe
+c:\csnet\zaki\ListExample\ListExample\obj\Debug\ListExample.pdb

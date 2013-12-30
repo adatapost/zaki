@@ -1,0 +1,6 @@
+MultiView and View --- Content navigation
+--------------------------------------------------------------------
+
+ MultiView displays only one "View" at once. To show any view of MultiView, set ActiveIndex = 0 or 1 etc. First View will be 0, second will be 1 and so on.
+
+ e.g MultiView1.ActiveIndex = 0;

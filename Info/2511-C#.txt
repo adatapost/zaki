@@ -1,0 +1,153 @@
+C#  Language (Version 5)
+=========================
+
+ C# is :
+
+   1. Pure object oriented CLS compliant language.
+   2. Strongly typed language 
+   3. dynamic language due to dynamic runtime from .net framework
+   
+Strongly typed
+--------------
+Datatype is bounded with value as well as variable and during compilation they are validated & verified.
+
+
+Dynamic runtime/language
+-----------------
+Datatype is bounded with value but not with variable. It means you can store different datatype value with single variable.
+
+ 
+C# Basics
+=========
+
+1. C# aliases
+
+   Second name (alternative) of type or entity.
+
+   For example, System.Int32 is CTS and in C# its alias is "int"
+
+   You can create new aliases of types using following syntax:
+
+    using alias = TypeName;
+
+e.g
+
+using myint = System.Int32;
+
+class Test 
+{
+   static void Main()
+    {
+        int no=10; // int is an alias of System.Int32
+        System.Int32 no1 = 10; // without an alias
+        myint no2 = 30; // user defined alias
+     }
+}
+
+2. C# compilation unit (.cs)
+
+   C# code is stored into .cs file where it contains one or more    definitions of TYPES.
+
+   There are two main statements must be appear in following order:
+
+   1. using statements
+
+   2. TYPES definition statements
+
+   
+   The using 
+   =========
+
+   There are two purpose of "using" statement.
+
+     1. To import the type so you can use "Type" without qualifying it.
+     2. To creates an alias.
+
+
+    To import the Type is an instruction to C# compiler about the     location of Type.
+
+     For example, we will use System.Console class method to display      "data" at command window.  
+
+     1. System.Console.Write(data) -- method write data at cursor
+     2. System.Console.WriteLine(data) -- write data at cursor and add
+						newline (\n).
+
+Example:
+
+using System;
+
+class Hello
+{
+   static void Main()
+   {
+     //Fully qualified type name
+     System.Console.WriteLine("Hello");
+
+     //Only typename
+     Console.WriteLine("Hi");
+    }
+}
+
+3. C# Project Templates and builds
+
+   The visual studio (VS) offers number of project templates through    which we can creates an empty/templated project.
+
+   The project is nothing but collection of source code files, settings or configurations, library references, compilation parameters and deployment settings.
+
+   Compilation & Deployment settings are known as "build". There are two types of build configurations:
+
+      1. Debug build (Which is default in VS)
+         Your application/project will be compiled and deployed with
+         debugging support in context of VS.
+
+      2. Release build
+         Once your app is done. Your app is ready for distribution (to          clients) and this kind of build remove the debugging support from your   app.
+
+In debug build, assemblies of your app will be created under bin\debug
+   release                                                  bin\release
+                                                              folders.
+
+   
+[NOTE: Change build config: Goto Build Menu + Configuration
+                            Or
+                            Project Properties]
+ 
+Launch your application with or without "debug" profile.
+--------------------------------------------------------
+ You can use "Debug Menu + Start Debugging" or f5 for debugging of your app or use Debug Menu  + Start Without Debugging or Ctrl+F5 to execute app without debugging.
+
+
+
+Create Executable assemblies
+------------------------------
+ 
+In order to create executable assemly, we must have a class with an entry point "Main" method. First letter of Main 'M' must be capital.
+
+ You can use any one from the following syntax:
+
+   1. static void Main()
+   2. static void Main(string []args)
+   3. static int Main()
+   4. static int Main(string []args)
+
+There must be one and only one "Main" in executable assembly.
+
+And change assembly type from Project Properties -- Exe or Dll.
+
+Create Library assemblies
+--------------------------
+
+ Apart from console, windows and WPF application, all other project types are example of "library" project. Library projects do not have "Main".
+
+ Project Properties + Output Type + Library
+
+
+
+
+
+
+
+
+
+
+

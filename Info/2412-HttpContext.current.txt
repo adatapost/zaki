@@ -1,0 +1,12 @@
+How to use Session,Request, Response, Cookies into non-page classes?
+---------------------------------------------------------------------
+Use HttpContext.Current property.
+
+ e.g
+
+   To set data into session,
+
+   HttpContext.Current.Session["no"]=10;
+
+
+  

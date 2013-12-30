@@ -1,0 +1,326 @@
+Inheritance Design
+===================================================================
+Inheritance is a program design in which we can create new "classes" from existing classes. It means new class is derived from existing one and it contains all traits and properties of existing class.
+
+  There is "is" relationship exists between two classes (Existing and newly defined classes)
+
+   Keyboard is a Hardware.
+
+       class Hardware {}
+       class Keyboard : Hardware{}
+
+  The unified programming model suggests that the class must have one   and only one direct super class. The .net framework class library is designed using this unified model where each and every class is sub-class of another class.
+
+   For example,
+
+    class A
+    {
+    }
+
+   If inheritance expression is not used to create a class then the class System.Object will be the direct super class of that newly defined type.
+
+   class A {} is equivalent to
+   class A : Object {}
+ 
+ Transitiveness of Inheritance
+ ================================
+
+  class A {}
+  class B : A {}
+
+  The class "A" is direct super class of class "B" and
+      class "Object" is direct super class of class "A" so the
+      class "B" has two super classes - "A" and "Object" and class "B"       includes traits from both these classes.
+
+      This kind of nature of inheritance is called "Transitiveness of       Inheritance".
+
+Example:
+
+class Person
+{
+   public int Age {get;set;}
+   public string Name {get;set;}
+}
+
+class Teacher : Person
+{
+  public string Subject {get;set;}
+} 
+
+class Doctor : Person
+{
+   public string Degree {get;set;}
+}
+
+class Test
+{
+   static void Main()
+    {
+    Teacher t = new Teacher() { Age = 20, Name = "A", Subject="Maths"};
+    Doctor d =new Doctor(){age=44,Name="B",Degree="MBBS"};
+    .......
+ }
+}
+What are the application of "Inheritance"?
+============================================
+1. To create a new class that extends the functionality of existing    (old) class without copying & pasting the code.
+
+2. To create infrastructure class and define hierarchy of classes.
+3. Object cast or conversion.
+4. Dynamic method dispatch -- Overriding of method.
+
+Object/sub-objects
+==================
+  When we creates an object of a class, first of all object of its   super class is created. 
+
+  Example:
+
+class A
+{
+    public int No { get; set; }
+}
+class B : A
+{
+    public int No { get; set; }
+}
+
+and following code in Main() will create three objects namely "Object","A" and "B":
+
+    B b = new B();
+
+    [Figure]
+
+ 
+ We can assign reference of sub-class object to any of its super-class reference variable.
+
+  For example,
+
+      B b = new B();  Reference of "B" object is assigned to
+                      "b" ref variable and that is valid 
+
+      A a = new B();  Reference of "A" from the "B" is assigned to "a".
+         or
+      A a=b;
+
+      object o = new B(); Reference of "Object" from "B" is assgiend
+           or             to "o".
+      o = b;
+
+ In above example, we can obtain references from sub-class object of  its super-class implicity.   
+
+    Code in Main:
+
+        B b = new B();
+        A a = b;
+        b.No = 10;
+        a.No = 20;
+
+        Console.WriteLine(a.No + " " + b.No);
+
+  But, if we've object reference of any of its super-class then we need to cast it explictly.
+
+   Code in Main: (Alternative of prev code)
+
+        B b = new B();
+
+        b.No = 10;
+        ((A)b).No = 20;
+
+        Console.WriteLine(((A)b).No + " " + b.No);
+
+  Explicit (force) cast operators
+  =================================
+
+   Type1  var1 = (Type1) var2; This is () cast operator which obtain
+				valid reference from var2 and cast it
+				to "Type1"
+
+
+   Another way of cast is   "as"  operator
+
+      Type1 var1 = var2 as Type1; This "as" operator cast object 				  reference and returns cast reference
+			  to reference variable if cast succes.
+                          It returns null if cast fails.
+
+   Always use "as" operator because () cast operator throws an exception when cast is invalid but with "as" operator, we will return "null".
+
+ Example: () opearator
+      object o = new B();
+        A a = (A)o;  //OK
+        o = "Hello";  
+        A a1 = (A)o; //Error
+  Example: as operator
+
+      object o = new B();
+        A a = o as A;  //OK
+        o = "Hello";
+        A a1 = o as A; // null without error
+        if(a1 == null)
+              Console.WriteLine("Cast failed");
+        else
+              Console.WriteLine("Succeed");
+
+
+Example:
+using System;
+
+class Language {
+    public void Speak()
+    {
+    }
+    public void Write()
+    {
+    }
+}
+class English : Language { }
+class Gujarati : Language { }
+class Mahesani : Gujarati { }
+class Kutchhi : Gujarati { }
+
+class Test
+{
+    static void Main()
+    {
+        Language l;
+
+        l = new Kutchhi();// Objects[Object,Language,Gujarati,Kutchhi]
+
+        //English p = (English)l;
+        Gujarati e = l as Gujarati;
+        if (e != null)
+            Console.WriteLine("Cast");
+        else
+            Console.WriteLine("Invalid");
+
+        English f = l as English;
+        if (f != null)
+            Console.WriteLine("Cast");
+        else
+            Console.WriteLine("Invalid");
+
+    }
+}
+
+Polymorphism -- Method overriding
+==================================
+
+In some cases where we need to suppress or superseed the superclass methods into sub-classes -- May be we do not want super-class methods to be executed or we think that they are obsolete or unwanted.
+
+To override the super-class's method:
+
+  1. Name and signature of method must be same as super-class method
+  2. Use "override" keyword for new version of super-class method or      newly defined method in sub-class.
+
+Can I override all methods of super-class?
+
+ No. You can override those super-class methods which are declared as "virtual". The "virtual" keyword marks a method as "overridable".
+
+Example:
+
+class Person
+{
+    public virtual void Who()
+    {
+        Console.WriteLine("I'm person");
+    }
+}
+class Teacher : Person
+{
+    public override void Who()
+    {
+        Console.WriteLine("I'm Teacher");
+    }
+}
+
+class MainApp
+{
+    static void Main()
+    {
+        Teacher t = new Teacher();
+        t.Who();
+        Person p = t;
+        p.Who();
+
+    }
+}
+
+Overrides the Object.Equals to compare objects
+=================================================
+In .net framework, we cannot compare objects via == (equality) operators instead we will use "Equals" method.
+
+class Person
+{
+    public int Age { get; set; }
+    public string Name { get; set; }
+
+    public override bool Equals(object obj)
+    {
+        Person other = obj as Person;
+        return this.Age == other.Age && this.Name.Equals(other.Name);
+    }
+}
+class Test
+{
+    static void Main()
+    {
+        Person p1 = new Person() { Age = 10, Name = "Aa" };
+        Person p2 = new Person() { Age = 10, Name = "Aa" };
+
+        if (p1.Equals(p2))
+            Console.WriteLine("EQ");
+        else
+            Console.WriteLine("Not Eq");
+    }
+} 
+
+
+ == equality operator is used only for primitive/simple types including - int, float, double, char, bool, long ,decimal, DateTime.
+
+
+In C#, you can compare string object using Equals() method as well as "==" operator.
+
+Override ToString()
+====================
+This method will be used to dump object data for debugging of application.
+
+ Add following method in "Person" class:
+
+   public override string ToString()
+    {
+      return Age + " " + Name;
+     }
+
+and add following code in Main:
+
+    Person t = new Person(){ Name = "A", Age =3};
+    Console.WriteLine(t); // will call ToString() - 3 A
+
+Override GetHashCode()
+=======================
+
+ Hash code is integer value produced via hashing algorithm based upon  the given data.
+
+CTS have implemented hash code:
+
+        double m1 = 10.12, m2 = 10.12;  
+        Console.WriteLine(m1.GetHashCode() + " " + m2.GetHashCode());
+        string s1 = "Admin", s2 = "Admin";
+        Console.WriteLine(s1.GetHashCode() + " " + s2.GetHashCode());
+
+But, we need to override GetHashCode() in our custom classes.
+
+Example:
+
+ Override GetHashCode() in Person:
+
+   public override int GetHashCode()
+    {
+       return Age.GetHashCode() + Name.GetHashCode();
+     }
+Also you can override Equals()
+
+   public override bool Equals(Object obj)
+    {
+       return GetHashCode() == obj.GetHashCode();
+     }
+ 

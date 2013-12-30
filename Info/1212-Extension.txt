@@ -1,0 +1,31 @@
+Extension Methods
+-----------------------------------------------------------------
+Extension method is C# language technique to attach a static method to a specific datatype using following syntax:
+
+public static class WhateverClassName
+{
+   public static return_type ExtensionMethodName(this TypeName var)
+    {
+     }
+}
+
+Example: Create "Hello" extension method for "string" datatype.
+
+public static class MyExtension
+{
+  public static void Hello(this string str)
+   {
+      Console.WriteLine("Hello, " + str);
+    }
+
+}
+
+//Test the extension method
+public class Test
+{
+   static void Main()
+    {
+      string name = "Mr. A";
+      name.Hello();
+     }
+}

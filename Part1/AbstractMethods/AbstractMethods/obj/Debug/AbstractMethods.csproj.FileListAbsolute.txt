@@ -1,0 +1,6 @@
+c:\csnet\zaki\AbstractMethods\AbstractMethods\bin\Debug\AbstractMethods.exe.config
+c:\csnet\zaki\AbstractMethods\AbstractMethods\bin\Debug\AbstractMethods.exe
+c:\csnet\zaki\AbstractMethods\AbstractMethods\bin\Debug\AbstractMethods.pdb
+c:\csnet\zaki\AbstractMethods\AbstractMethods\obj\Debug\AbstractMethods.csprojResolveAssemblyReference.cache
+c:\csnet\zaki\AbstractMethods\AbstractMethods\obj\Debug\AbstractMethods.exe
+c:\csnet\zaki\AbstractMethods\AbstractMethods\obj\Debug\AbstractMethods.pdb

@@ -1,0 +1,6 @@
+c:\csnet\zaki\GenericsExample\GenericsExample\bin\Debug\GenericsExample.exe.config
+c:\csnet\zaki\GenericsExample\GenericsExample\bin\Debug\GenericsExample.exe
+c:\csnet\zaki\GenericsExample\GenericsExample\bin\Debug\GenericsExample.pdb
+c:\csnet\zaki\GenericsExample\GenericsExample\obj\Debug\GenericsExample.csprojResolveAssemblyReference.cache
+c:\csnet\zaki\GenericsExample\GenericsExample\obj\Debug\GenericsExample.exe
+c:\csnet\zaki\GenericsExample\GenericsExample\obj\Debug\GenericsExample.pdb

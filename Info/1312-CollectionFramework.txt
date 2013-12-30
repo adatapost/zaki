@@ -1,0 +1,186 @@
+List<T> collection
+------------------------------------------------------------
+It is ordered collection in which we can insert/append/remove elements.
+
+        List<int> nos = new List<int>();
+        //append nos
+        nos.Add(10);
+        nos.Add(20);
+        nos.Add(1);
+
+        //insert elements
+        nos.Insert(0, 4);
+        nos.Insert(2, 90);
+
+        //Exists
+        Console.WriteLine(nos.Contains(10));
+
+        //Get single element
+        Console.WriteLine(nos[0]); //1st
+        //Set an element
+        nos[0] = 900;
+
+        foreach (var n in nos)
+            Console.WriteLine(n);
+
+        nos.RemoveAt(1); //Remove 2nd item
+        nos.Remove(90);
+
+        Console.WriteLine("---------");
+        foreach (var n in nos)
+            Console.WriteLine(n);
+
+
+Example: List<T> Initializer
+
+       List<string> cities = new List<string>()
+        {
+            "Meh","Pat","Raj","Sur"
+        };
+        foreach (var city in cities)
+            Console.WriteLine(city);
+
+Example: List<Emp> and display on web.
+
+Create App_Code/Emp.cs
+-----------------------
+public class Emp
+{
+    public int ID { get; set; }
+    public string Name { get; set; }
+    public bool IsAdhoc { get; set; }
+
+    public static List<Emp> GetEmps()
+    {
+        List<Emp> emps = new List<Emp>()
+            {
+                new Emp(){ ID=10,Name="A", IsAdhoc=true},
+                new Emp(){ ID=11,Name="B", IsAdhoc=false},
+            };
+        emps.Add(new Emp() { ID = 90, IsAdhoc = true, Name = "R" });
+        return emps;
+    }
+}
+
+Default.aspx
+--------------
+<asp:GridView id="empGrid" runat="server"/>
+
+Default.aspx.cs
+----------------
+empGrid.DataSource = Emp.GetEmps();
+empGrid.DataBind();
+
+Example: Sort the List<T>. We need to pass Comparison<T> delegate reference. Comparison delegate takes two parameters and returns 
+1 (positive) if firstElement > secondElement
+-1 (negative) if firstElement< secondElement
+0  (zero) if they are equals
+
+
+        List<Emp> emps = new List<Emp>()
+        {
+           .....
+        };
+
+        Comparison<Emp> sortById = (e1, e2) => 
+        {
+            if (e1.ID > e2.ID)
+                return 1;
+            else
+                if (e1.ID < e2.ID)
+                    return -1;
+                else
+                    return 0;
+        };
+
+        emps.Sort(sortById);
+        foreach (var e in emps)
+            Console.WriteLine(e.ID + " " + e.Name + " " + e.IsAdhoc);
+
+        //Or define lambda expression in parameter list
+        emps.Sort((e1, e2) => {
+            return e1.Name.CompareTo(e2.Name);
+        });
+
+        foreach (var e in emps)
+            Console.WriteLine(e.ID + " " + e.Name + " " + e.IsAdhoc);
+
+
+Example: Extending the List<T> and add some new methods.
+
+public class Emps : List<Emp>
+{
+    public void SortByID()
+    {
+        Sort((x, y) => x.ID - y.ID);
+    }
+    public void SortByName()
+    {
+        Sort((x, y) => x.Name.CompareTo(y.Name));
+    }
+}
+
+
+code in Main:
+
+Emps emps=new Emps() 
+{
+   new Emp() { ID=2, Name="Q", isAdhoc=false},
+   .....
+ };
+emps.SortByID();
+foreach(var t in emps) { ...}
+
+emps.SortByName();
+foreach(var t in emps) { ...}
+      
+
+Dictionary<K,V> -- It is collection KeyValuePair<K,V> entries where K stands for key and must be unique and V stands for value.
+
+Example:
+        Dictionary<int, string> std = new Dictionary<int, string>();
+
+        //Add an entry Key-Value (Pair)
+
+        std.Add(10, "R");
+        std.Add(1, "B");
+        std.Add(30, "P");
+        if (std.ContainsKey(10))
+            Console.WriteLine("10 is exists");
+        else
+           std.Add(10, "T");
+
+        //Set or get using key
+
+        std[10] = "Rajesh";
+        Console.WriteLine(std[10]);
+
+        //Remove an entry - returns true if removed
+        Console.WriteLine(std.Remove(10));
+
+        //Iterate all entries
+        foreach (KeyValuePair<int, string> e in std)
+            Console.WriteLine(e.Key + " " + e.Value);
+        foreach (var t in std)
+            Console.WriteLine(t.Key + " " + t.Value);
+
+Example: Represent country-states data
+
+ Dictionary<string, List<string>> cnt = new Dictionary<string,                                                      List<string>>();
+        cnt.Add("IN", new List<string>() { "Guj" });
+        cnt.Add("USA", new List<string>());
+
+        cnt["IN"].Add("Raj");
+        cnt["USA"].Add("OC");
+        cnt["USA"].Add("NY");
+
+        foreach (var c in cnt)
+        {
+            Console.WriteLine(c.Key);
+            foreach (var s in c.Value)
+            {
+                Console.WriteLine("\t" + s);
+            }
+        }
+
+Dictionary<string, Dictionary<String,List<string>>>

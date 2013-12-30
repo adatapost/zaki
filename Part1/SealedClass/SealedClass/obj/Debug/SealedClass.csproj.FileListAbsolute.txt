@@ -1,0 +1,6 @@
+c:\csnet\zaki\SealedClass\SealedClass\bin\Debug\SealedClass.exe.config
+c:\csnet\zaki\SealedClass\SealedClass\obj\Debug\SealedClass.csprojResolveAssemblyReference.cache
+c:\csnet\zaki\SealedClass\SealedClass\bin\Debug\SealedClass.exe
+c:\csnet\zaki\SealedClass\SealedClass\bin\Debug\SealedClass.pdb
+c:\csnet\zaki\SealedClass\SealedClass\obj\Debug\SealedClass.exe
+c:\csnet\zaki\SealedClass\SealedClass\obj\Debug\SealedClass.pdb

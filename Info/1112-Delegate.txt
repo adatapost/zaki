@@ -1,0 +1,151 @@
+Delegate reference type
+============================================================
+The "delegate" keyword create a new datatype that will be used to store method references along with an object and this behavior is called "Closure".
+
+General Syntax
+--------------
+
+  access  delegate return_type DelegateTypeName(arguments...);
+
+
+The "delegate" type can store reference of any method (static or instance) whose signature are same as delegate type.
+
+ For example:
+
+  public delegate void FirstDel();
+
+    can store any method reference whose parameter and return type is         "void".
+
+  public delegate int SecondDel(int a,int b);
+ 
+    Can store ref of any method whose return type is int and
+    has two int parameters.
+
+Example:
+
+//Declare delegate types
+public delegate void FirstDel();
+public delegate void SecondDel(int n);
+
+class Test
+{
+    public void Print()
+    {
+        Console.WriteLine("Print it");
+    }
+    public void Disp(int n)
+    {
+        Console.WriteLine(n);
+    }
+}
+
+class MainApp
+{
+    static void Main()
+    {
+        Test a = new Test();
+        
+        //Create delegate var
+        FirstDel printHello = a.Print;
+        SecondDel displayNo = a.Disp;
+
+        //Invoke method using delegate ref
+
+        printHello();
+        displayNo(9);
+
+
+    }
+}
+
+Example: Store ref of static methods
+--------------------------------------
+public delegate int MyDel(int a, int b);
+class Test
+{
+    static int Add(int m, int n)
+    {
+        return m + n;
+    }
+    static int Mul(int a, int b)
+    {
+        return a * b;
+    }
+}
+class MainApp
+{
+    static void Main()
+    {
+        MyDel p = Test.Add;
+        Console.WriteLine(p(10, 20));
+        p = Test.Mul;
+        Console.WriteLine(p(10, 20));
+    }
+}
+
+Multicast - adding/removing method reference into/from delegate variable.
+---------------------------------------------------------------
+Using += and -= operator we can add and remove method ref respectively.
+
+ Write foll code in Main:
+
+       MyDel p = Test.Add;
+       p+= Test.Mul;
+       p+= Test.Add;
+       
+       p(2,3);  will call Add, Mul and Add methods.
+       p-= Test.Mul; //remove Mul() reference
+       p(2,4); will call Add and Add methods
+
+
+Anonymous or nameless functions
+--------------------------------------------------------------------
+Delegate also used to create nameless/anonymous functions using following syntax:
+
+ YourDelegateType varName = delegate(arguments....)
+  {
+     //statements
+   }; <---- Do not forget this semi-colon.
+Example:
+
+public delegate void MyDel(int a,int b);
+
+class MainApp
+{
+    static void Main()
+    {
+        MyDel add = delegate(int m, int n)
+        {
+            Console.WriteLine(m + n);
+        };
+        MyDel series = delegate(int start, int end)
+        {
+            for (int i = start; i <= end; i++)
+                Console.WriteLine(i);
+        };
+
+        add(10, 20);
+        series(3, 9);
+    }
+}
+
+Another syntax to create anonymous function and this syntax is called "Lambda expression".
+
+
+  Syntax:
+
+     YourDelegateType varName = (arguments_without_typeName) => { ...};
+
+Example: Code in Main:
+
+       //No need to add curly braces for single line statement
+        MyDel add = (x, y) => Console.WriteLine(x + y);
+
+        MyDel series = (start, end) =>
+        {
+            for (int i = start; i <= end; i++)
+                Console.WriteLine(i);
+        };
+
+        add(10, 20);
+        series(10, 20);

@@ -1,0 +1,17 @@
+﻿body {
+    background: #aa0042;
+    color:white;
+}
+
+h1{
+    color:#f0f5e2;
+    font-size:4em;
+}
+
+a{
+    text-decoration:none;
+    color:white;
+}
+a:hover{
+    text-decoration:underline;
+}

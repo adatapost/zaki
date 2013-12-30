@@ -1,0 +1,87 @@
+The Control Architecture
+=====================================================================
+
+What is ASP.NET Controls?
+-------------------------
+  They are TYPES (classes), used programatically or declaratively. 
+
+For example,
+
+    TextBox tx=new TextBox(); <--- Programatically
+    tx.RunAt = "Server"
+    tx.Id="p1"
+
+Or
+
+    <asp:TextBox runat="server" id="p1"/> <--- Declaratively
+
+
+  The ASP.NET application server produce dynamic content of Html/Css/JavaScript from the control's current state (properties). So "ASP.NET Controls" are classses which emits Html/Css/JavaScript when they are rendered. 
+
+The super class of all controls including Page class
+-----------------------------------------------------
+The System.Web.UI.Control is the super class of controls and pages including custom and user-defined controls.
+
+There are two direct sub-classes of "Control" class.
+
+  1. System.Web.UI.HtmlControls.HtmlControl --- Sub classes of "HtmlControl" are directly mapped to the standard html tags.
+
+     For example,
+
+       Html tag : <p runat="server"/> is map to GenericHtmlControl
+                  <input type="text" runat="server"/> is map to
+                                                  InputHtmlControl and                                                   so on.
+
+     In fact each html tag attributed with runat="server" is an example      of HtmlControl.
+
+
+  2. System.Web.UI.WebControls.WebControl -- Sub classes of "WebControl" are .net framework classes which emits HTML/CSS/JavaScript when they are rendered. They are not mapped to Html tags instead they produce complex content of Html. 
+
+     For example,
+
+       <asp:Calendar /> is WebControl that product huge html markup                         (table, script,etc).
+
+
+      You can sub-class WebControl to create user-defined controls       (User Controls - .ascx) and Custom Controls.
+
+Common Properties/Methods of Control class
+============================================
+1. ID  -- Object reference for both client and server environment.
+
+2. Visible - To hide/show an element. It means Visible=false elements
+		wont be rendered.
+
+3. ClientID - To return id for the use with client programming.
+
+   For example, to access "id" of any control in JavaScript code:
+
+    <script>
+        var b = document.getElementById("<%=Button1.ClientID %>");
+        console.log(b);
+    </script>
+
+ PS: ClientID is mandatory when your controls are placed into content-pages, user-controls or dynamically created.
+
+
+4. Controls - It is collection (List) controls. We can add/remove               controls programatically.
+
+   First of all choose/select the "Parent" control in which you wish to add other controls. (e.g form, placeholder, etc)
+
+   1. add placeholder control
+   2. write following code in Page_Load/page_Init event.
+
+
+        Button btn = new Button();
+        btn.ID = "myButton";
+        btn.Text = "OK";
+        TextBox tx = new TextBox();
+        tx.BackColor = System.Drawing.Color.Red;
+
+        //add two controls into placeholder
+
+        PlaceHolder1.Controls.Add(btn);
+        PlaceHolder1.Controls.Add(tx);
+   
+
+
+

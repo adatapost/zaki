@@ -1,0 +1,6 @@
+c:\csnet\zaki\ArrayExample\ArrayExample\bin\Debug\ArrayExample.exe.config
+c:\csnet\zaki\ArrayExample\ArrayExample\bin\Debug\ArrayExample.exe
+c:\csnet\zaki\ArrayExample\ArrayExample\bin\Debug\ArrayExample.pdb
+c:\csnet\zaki\ArrayExample\ArrayExample\obj\Debug\ArrayExample.csprojResolveAssemblyReference.cache
+c:\csnet\zaki\ArrayExample\ArrayExample\obj\Debug\ArrayExample.exe
+c:\csnet\zaki\ArrayExample\ArrayExample\obj\Debug\ArrayExample.pdb
